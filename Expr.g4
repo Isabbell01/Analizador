@@ -159,7 +159,7 @@ dotted_name
 
 // Common elements
 block
-    : NEWLINE INDENT statements DEDENT
+    : NEWLINE statements
     | simple_stmts
     ;
 
@@ -331,7 +331,7 @@ finally_block
 
 // Match statement
 match_stmt
-    : 'match' subject_expr ':' NEWLINE INDENT case_block+ DEDENT
+    : 'match' subject_expr ':' NEWLINE case_block+
     ;
 
 subject_expr
@@ -435,12 +435,12 @@ value_pattern
     ;
 
 attr
-    : name_or_attr '.' NAME
+    : NAME (DOT NAME)+
     ;
 
 name_or_attr
-    : attr
-    | NAME
+    : NAME
+    | attr
     ;
 
 group_pattern
@@ -1040,8 +1040,9 @@ func_type_comment
     | TYPE_COMMENT
     ;
 	
-//====
+// -----------------------------
 // Keywords
+// -----------------------------
 DEF       : 'def';
 ASYNC     : 'async';
 AWAIT     : 'await';
@@ -1081,134 +1082,113 @@ AS        : 'as';
 DEL       : 'del';
 LAMBDA    : 'lambda';
 
-// Op y Del
-PLUS      : '+';
-MINUS     : '-';
-STAR      : '*';
-DOUBLESTAR: '**';
-SLASH     : '/';
-DOUBLESLASH: '//';
-PERCENT   : '%';
-AT        : '@';
-AMPER     : '&';
-PIPE      : '|';
-CARET     : '^';
-TILDE     : '~';
-LESS      : '<';
-GREATER   : '>';
-LESSEQUAL : '<=';
-GREATEREQUAL: '>=';
-EQUAL     : '==';
-NOTEQUAL  : '!=';
-COLON     : ':';
-SEMI      : ';';
-COMMA     : ',';
-DOT       : '.';
-ELLIPSIS  : '...';
-ASSIGN    : '=';
-PLUSEQUAL : '+=';
-MINEQUAL  : '-=';
-STAREQUAL : '*=';
-SLASHEQUAL: '/=';
-DOUBLESTAREQUAL: '**=';
+// -----------------------------
+// Operators
+// -----------------------------
+DOUBLESTAR      : '**';
+DOUBLESLASH     : '//';
+LESSEQUAL       : '<=';
+GREATEREQUAL    : '>=';
+EQUAL           : '==';
+NOTEQUAL        : '!=';
+PLUSEQUAL       : '+=';
+MINEQUAL        : '-=';
+STAREQUAL       : '*=';
+SLASHEQUAL      : '/=';
+DOUBLESTAREQUAL : '**=';
 DOUBLESLASHEQUAL: '//=';
-PERCENTEQUAL: '%=';
-ATEQUAL   : '@=';
-AMPEREQUAL: '&=';
-PIPEEQUAL : '|=';
-CARETEQUAL: '^=';
-LESSEQUAL2: '<<=';
-GREATEREQUAL2: '>>=';
-WALRUS    : ':=';
+PERCENTEQUAL    : '%=';
+ATEQUAL         : '@=';
+AMPEREQUAL      : '&=';
+PIPEEQUAL       : '|=';
+CARETEQUAL      : '^=';
+WALRUS          : ':=';
 
-// 
-OPEN_PAREN   : '(';
-CLOSE_PAREN  : ')';
-OPEN_BRACE   : '{';
-CLOSE_BRACE  : '}';
-OPEN_BRACK   : '[';
-CLOSE_BRACK  : ']';
+PLUS        : '+';
+MINUS       : '-';
+STAR        : '*';
+SLASH       : '/';
+PERCENT     : '%';
+AT          : '@';
+AMPER       : '&';
+PIPE        : '|';
+CARET       : '^';
+TILDE       : '~';
+LESS        : '<';
+GREATER     : '>';
+ASSIGN      : '=';
+COLON       : ':';
+SEMI        : ';';
+COMMA       : ',';
+DOT         : '.';
+ELLIPSIS    : '...';
 
-// 
-NEWLINE     : '\r'? '\n' | '\r';
-INDENT      : [ \t]+;           // adsasd
-DEDENT      : ;                 // asdsa
+// -----------------------------
+// Delimiters
+// -----------------------------
+OPEN_PAREN  : '(';
+CLOSE_PAREN : ')';
+OPEN_BRACK  : '[';
+CLOSE_BRACK : ']';
+OPEN_BRACE  : '{';
+CLOSE_BRACE : '}';
 
-// comment
-TYPE_COMMENT: '#' [ \t]* 'type:' ~[\r\n]*;
-
-// F-strings, T-strings
-FSTRING_START : 'f' | 'F' | 'rf' | 'fr' | 'RF' | 'FR' -> pushMode(FSTRING_MODE);
-TSTRING_START : 't' | 'T' -> pushMode(TSTRING_MODE);   // Experimental in 3.13+
-
-// strings
+// -----------------------------
+// Literals
+// -----------------------------
 STRING
-    : [ruRUfF]? ( SHORT_STRING | LONG_STRING )
+    : STRING_PREFIX? (
+        '\'' (ESC_SEQ | ~['\\\r\n])* '\''
+      | '"'  (ESC_SEQ | ~["\\\r\n])* '"'
+      )
     ;
 
-// numbers
+fragment STRING_PREFIX
+    : [rRuUbBfFtT]
+    | [rR][fF]
+    | [fF][rR]
+    ;
+
 NUMBER
-    : INTEGER
-    | FLOAT_NUMBER
-    | IMAG_NUMBER
+    : DIGIT+ ('.' DIGIT+)? ([eE][+-]? DIGIT+)?
+    | '.' DIGIT+ ([eE][+-]? DIGIT+)?
     ;
 
-NAME: ID_START ID_CONTINUE*;
-
-// comments
-WS          : [ \t\f]+ -> channel(HIDDEN);
-COMMENT     : '#' ~[\r\n]* -> channel(HIDDEN);
-LINE_JOINING: '\\' [ \t]* (NEWLINE | EOF) -> channel(HIDDEN);
-
-// fragments
-fragment SHORT_STRING
-    : '\'' (ESC_SEQ | ~['\\\r\n])* '\''
-    | '"' (ESC_SEQ | ~["\\\r\n])* '"'
+NAME
+    : ID_START ID_CONTINUE*
     ;
 
-fragment LONG_STRING
-    : '\'\'\'' .*? '\'\'\''
-    | '"""' .*? '"""'
+// -----------------------------
+// Whitespace
+// -----------------------------
+NEWLINE
+    : '\r'? '\n'
     ;
 
+WS
+    : [ \t\f]+ -> skip
+    ;
+
+COMMENT
+    : '#' ~[\r\n]* -> skip
+    ;
+
+// -----------------------------
+// Fragments
+// -----------------------------
 fragment ESC_SEQ
     : '\\' .
     ;
 
-fragment INTEGER: '0' [xX] [0-9a-fA-F]+
-                | '0' [oO] [0-7]+
-                | '0' [bB] [01]+
-                | [1-9] [0-9]*
-                | '0'
-                ;
-
-fragment FLOAT_NUMBER: [0-9]+ '.' [0-9]* EXPONENT?
-                     | '.' [0-9]+ EXPONENT?
-                     | [0-9]+ EXPONENT
-                     ;
-
-fragment IMAG_NUMBER: (FLOAT_NUMBER | [0-9]+) [jJ];
-
-fragment EXPONENT: [eE] [+-]? [0-9]+;
+fragment DIGIT
+    : [0-9]
+    ;
 
 fragment ID_START
     : [a-zA-Z_]
-    | '\u0080'..'\uFFFF'    // simplified unicode
     ;
 
 fragment ID_CONTINUE
-    : ID_START
-    | [0-9]
+    : [a-zA-Z0-9_]
     ;
-
-// modos f-strings / t-strings
-mode FSTRING_MODE;
-FSTRING_MIDDLE : ~[{}]+;
-FSTRING_END    : '}' -> popMode;
-FBRACE_OPEN    : '{' -> pushMode(DEFAULT_MODE); // allow nested expressions
-
-mode TSTRING_MODE;
-TSTRING_MIDDLE : ~[{}]+;
-TSTRING_END    : '}' -> popMode;
-// =======================
-
+	
