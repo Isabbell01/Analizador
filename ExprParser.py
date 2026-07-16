@@ -10,7 +10,7 @@ else:
 
 def serializedATN():
     return [
-        4,1,102,2536,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,
+        4,1,104,2536,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,
         7,6,2,7,7,7,2,8,7,8,2,9,7,9,2,10,7,10,2,11,7,11,2,12,7,12,2,13,7,
         13,2,14,7,14,2,15,7,15,2,16,7,16,2,17,7,17,2,18,7,18,2,19,7,19,2,
         20,7,20,2,21,7,21,2,22,7,22,2,23,7,23,2,24,7,24,2,25,7,25,2,26,7,
@@ -468,23 +468,23 @@ def serializedATN():
         0,0,0,877,880,1,0,0,0,878,880,3,88,44,0,879,846,1,0,0,0,879,857,
         1,0,0,0,879,868,1,0,0,0,879,878,1,0,0,0,880,87,1,0,0,0,881,882,5,
         46,0,0,882,883,3,90,45,0,883,89,1,0,0,0,884,885,3,98,49,0,885,887,
-        5,79,0,0,886,888,5,96,0,0,887,886,1,0,0,0,887,888,1,0,0,0,888,896,
-        1,0,0,0,889,891,3,98,49,0,890,892,5,96,0,0,891,890,1,0,0,0,891,892,
+        5,79,0,0,886,888,5,98,0,0,887,886,1,0,0,0,887,888,1,0,0,0,888,896,
+        1,0,0,0,889,891,3,98,49,0,890,892,5,98,0,0,891,890,1,0,0,0,891,892,
         1,0,0,0,892,893,1,0,0,0,893,894,5,83,0,0,894,896,1,0,0,0,895,884,
         1,0,0,0,895,889,1,0,0,0,896,91,1,0,0,0,897,898,3,100,50,0,898,900,
-        5,79,0,0,899,901,5,96,0,0,900,899,1,0,0,0,900,901,1,0,0,0,901,909,
-        1,0,0,0,902,904,3,100,50,0,903,905,5,96,0,0,904,903,1,0,0,0,904,
+        5,79,0,0,899,901,5,98,0,0,900,899,1,0,0,0,900,901,1,0,0,0,901,909,
+        1,0,0,0,902,904,3,100,50,0,903,905,5,98,0,0,904,903,1,0,0,0,904,
         905,1,0,0,0,905,906,1,0,0,0,906,907,5,83,0,0,907,909,1,0,0,0,908,
         897,1,0,0,0,908,902,1,0,0,0,909,93,1,0,0,0,910,911,3,98,49,0,911,
-        912,3,106,53,0,912,914,5,79,0,0,913,915,5,96,0,0,914,913,1,0,0,0,
+        912,3,106,53,0,912,914,5,79,0,0,913,915,5,98,0,0,914,913,1,0,0,0,
         914,915,1,0,0,0,915,924,1,0,0,0,916,917,3,98,49,0,917,919,3,106,
-        53,0,918,920,5,96,0,0,919,918,1,0,0,0,919,920,1,0,0,0,920,921,1,
+        53,0,918,920,5,98,0,0,919,918,1,0,0,0,919,920,1,0,0,0,920,921,1,
         0,0,0,921,922,5,83,0,0,922,924,1,0,0,0,923,910,1,0,0,0,923,916,1,
         0,0,0,924,95,1,0,0,0,925,927,3,98,49,0,926,928,3,106,53,0,927,926,
         1,0,0,0,927,928,1,0,0,0,928,929,1,0,0,0,929,931,5,79,0,0,930,932,
-        5,96,0,0,931,930,1,0,0,0,931,932,1,0,0,0,932,943,1,0,0,0,933,935,
+        5,98,0,0,931,930,1,0,0,0,931,932,1,0,0,0,932,943,1,0,0,0,933,935,
         3,98,49,0,934,936,3,106,53,0,935,934,1,0,0,0,935,936,1,0,0,0,936,
-        938,1,0,0,0,937,939,5,96,0,0,938,937,1,0,0,0,938,939,1,0,0,0,939,
+        938,1,0,0,0,937,939,5,98,0,0,938,937,1,0,0,0,938,939,1,0,0,0,939,
         940,1,0,0,0,940,941,5,83,0,0,941,943,1,0,0,0,942,925,1,0,0,0,942,
         933,1,0,0,0,943,97,1,0,0,0,944,946,5,90,0,0,945,947,3,102,51,0,946,
         945,1,0,0,0,946,947,1,0,0,0,947,99,1,0,0,0,948,949,5,90,0,0,949,
@@ -504,12 +504,12 @@ def serializedATN():
         0,0,994,995,5,14,0,0,995,996,3,232,116,0,996,997,5,77,0,0,997,999,
         3,66,33,0,998,1000,3,112,56,0,999,998,1,0,0,0,999,1000,1,0,0,0,1000,
         115,1,0,0,0,1001,1002,5,15,0,0,1002,1003,3,380,190,0,1003,1004,5,
-        16,0,0,1004,1005,3,222,111,0,1005,1007,5,77,0,0,1006,1008,5,96,0,
+        16,0,0,1004,1005,3,222,111,0,1005,1007,5,77,0,0,1006,1008,5,98,0,
         0,1007,1006,1,0,0,0,1007,1008,1,0,0,0,1008,1009,1,0,0,0,1009,1011,
         3,66,33,0,1010,1012,3,112,56,0,1011,1010,1,0,0,0,1011,1012,1,0,0,
         0,1012,1027,1,0,0,0,1013,1014,5,9,0,0,1014,1015,5,15,0,0,1015,1016,
         3,380,190,0,1016,1017,5,16,0,0,1017,1018,3,222,111,0,1018,1020,5,
-        77,0,0,1019,1021,5,96,0,0,1020,1019,1,0,0,0,1020,1021,1,0,0,0,1021,
+        77,0,0,1019,1021,5,98,0,0,1020,1019,1,0,0,0,1020,1021,1,0,0,0,1021,
         1022,1,0,0,0,1022,1024,3,66,33,0,1023,1025,3,112,56,0,1024,1023,
         1,0,0,0,1024,1025,1,0,0,0,1025,1027,1,0,0,0,1026,1001,1,0,0,0,1026,
         1013,1,0,0,0,1027,117,1,0,0,0,1028,1029,5,34,0,0,1029,1030,5,82,
@@ -517,12 +517,12 @@ def serializedATN():
         1033,1031,1,0,0,0,1034,1037,1,0,0,0,1035,1033,1,0,0,0,1035,1036,
         1,0,0,0,1036,1039,1,0,0,0,1037,1035,1,0,0,0,1038,1040,5,79,0,0,1039,
         1038,1,0,0,0,1039,1040,1,0,0,0,1040,1041,1,0,0,0,1041,1042,5,83,
-        0,0,1042,1044,5,77,0,0,1043,1045,5,96,0,0,1044,1043,1,0,0,0,1044,
+        0,0,1042,1044,5,77,0,0,1043,1045,5,98,0,0,1044,1043,1,0,0,0,1044,
         1045,1,0,0,0,1045,1046,1,0,0,0,1046,1047,3,66,33,0,1047,1098,1,0,
         0,0,1048,1049,5,34,0,0,1049,1054,3,120,60,0,1050,1051,5,79,0,0,1051,
         1053,3,120,60,0,1052,1050,1,0,0,0,1053,1056,1,0,0,0,1054,1052,1,
         0,0,0,1054,1055,1,0,0,0,1055,1057,1,0,0,0,1056,1054,1,0,0,0,1057,
-        1059,5,77,0,0,1058,1060,5,96,0,0,1059,1058,1,0,0,0,1059,1060,1,0,
+        1059,5,77,0,0,1058,1060,5,98,0,0,1059,1058,1,0,0,0,1059,1060,1,0,
         0,0,1060,1061,1,0,0,0,1061,1062,3,66,33,0,1062,1098,1,0,0,0,1063,
         1064,5,9,0,0,1064,1065,5,34,0,0,1065,1066,5,82,0,0,1066,1071,3,120,
         60,0,1067,1068,5,79,0,0,1068,1070,3,120,60,0,1069,1067,1,0,0,0,1070,
@@ -533,7 +533,7 @@ def serializedATN():
         5,34,0,0,1083,1088,3,120,60,0,1084,1085,5,79,0,0,1085,1087,3,120,
         60,0,1086,1084,1,0,0,0,1087,1090,1,0,0,0,1088,1086,1,0,0,0,1088,
         1089,1,0,0,0,1089,1091,1,0,0,0,1090,1088,1,0,0,0,1091,1093,5,77,
-        0,0,1092,1094,5,96,0,0,1093,1092,1,0,0,0,1093,1094,1,0,0,0,1094,
+        0,0,1092,1094,5,98,0,0,1093,1092,1,0,0,0,1093,1094,1,0,0,0,1094,
         1095,1,0,0,0,1095,1096,3,66,33,0,1096,1098,1,0,0,0,1097,1028,1,0,
         0,0,1097,1048,1,0,0,0,1097,1063,1,0,0,0,1097,1081,1,0,0,0,1098,119,
         1,0,0,0,1099,1100,3,218,109,0,1100,1101,5,43,0,0,1101,1102,3,386,
@@ -856,24 +856,24 @@ def serializedATN():
         1,0,0,0,2004,2005,1,0,0,0,2005,2006,1,0,0,0,2006,2007,5,77,0,0,2007,
         2009,1,0,0,0,2008,1996,1,0,0,0,2008,2002,1,0,0,0,2009,311,1,0,0,
         0,2010,2011,5,90,0,0,2011,313,1,0,0,0,2012,2015,3,316,158,0,2013,
-        2015,5,98,0,0,2014,2012,1,0,0,0,2014,2013,1,0,0,0,2015,315,1,0,0,
-        0,2016,2017,5,86,0,0,2017,2019,3,24,12,0,2018,2020,5,76,0,0,2019,
+        2015,5,100,0,0,2014,2012,1,0,0,0,2014,2013,1,0,0,0,2015,315,1,0,
+        0,0,2016,2017,5,86,0,0,2017,2019,3,24,12,0,2018,2020,5,76,0,0,2019,
         2018,1,0,0,0,2019,2020,1,0,0,0,2020,2022,1,0,0,0,2021,2023,3,318,
         159,0,2022,2021,1,0,0,0,2022,2023,1,0,0,0,2023,2025,1,0,0,0,2024,
         2026,3,320,160,0,2025,2024,1,0,0,0,2025,2026,1,0,0,0,2026,2027,1,
         0,0,0,2027,2028,5,87,0,0,2028,317,1,0,0,0,2029,2030,5,7,0,0,2030,
         2031,5,90,0,0,2031,319,1,0,0,0,2032,2036,5,77,0,0,2033,2035,3,322,
         161,0,2034,2033,1,0,0,0,2035,2038,1,0,0,0,2036,2034,1,0,0,0,2036,
-        2037,1,0,0,0,2037,321,1,0,0,0,2038,2036,1,0,0,0,2039,2042,5,98,0,
-        0,2040,2042,3,316,158,0,2041,2039,1,0,0,0,2041,2040,1,0,0,0,2042,
-        323,1,0,0,0,2043,2047,5,97,0,0,2044,2046,3,314,157,0,2045,2044,1,
+        2037,1,0,0,0,2037,321,1,0,0,0,2038,2036,1,0,0,0,2039,2042,5,100,
+        0,0,2040,2042,3,316,158,0,2041,2039,1,0,0,0,2041,2040,1,0,0,0,2042,
+        323,1,0,0,0,2043,2047,5,99,0,0,2044,2046,3,314,157,0,2045,2044,1,
         0,0,0,2046,2049,1,0,0,0,2047,2045,1,0,0,0,2047,2048,1,0,0,0,2048,
-        2050,1,0,0,0,2049,2047,1,0,0,0,2050,2051,5,99,0,0,2051,325,1,0,0,
-        0,2052,2053,5,86,0,0,2053,2055,3,24,12,0,2054,2056,5,76,0,0,2055,
+        2050,1,0,0,0,2049,2047,1,0,0,0,2050,2051,5,101,0,0,2051,325,1,0,
+        0,0,2052,2053,5,86,0,0,2053,2055,3,24,12,0,2054,2056,5,76,0,0,2055,
         2054,1,0,0,0,2055,2056,1,0,0,0,2056,2058,1,0,0,0,2057,2059,3,318,
         159,0,2058,2057,1,0,0,0,2058,2059,1,0,0,0,2059,2061,1,0,0,0,2060,
         2062,3,330,165,0,2061,2060,1,0,0,0,2061,2062,1,0,0,0,2062,2063,1,
-        0,0,0,2063,2064,5,87,0,0,2064,327,1,0,0,0,2065,2068,5,101,0,0,2066,
+        0,0,0,2063,2064,5,87,0,0,2064,327,1,0,0,0,2065,2068,5,103,0,0,2066,
         2068,3,326,163,0,2067,2065,1,0,0,0,2067,2066,1,0,0,0,2068,329,1,
         0,0,0,2069,2073,5,77,0,0,2070,2072,3,328,164,0,2071,2070,1,0,0,0,
         2072,2075,1,0,0,0,2073,2071,1,0,0,0,2073,2074,1,0,0,0,2074,331,1,
@@ -882,10 +882,10 @@ def serializedATN():
         0,0,2081,2083,3,318,159,0,2082,2081,1,0,0,0,2082,2083,1,0,0,0,2083,
         2085,1,0,0,0,2084,2086,3,330,165,0,2085,2084,1,0,0,0,2085,2086,1,
         0,0,0,2086,2087,1,0,0,0,2087,2088,5,87,0,0,2088,333,1,0,0,0,2089,
-        2092,3,332,166,0,2090,2092,5,101,0,0,2091,2089,1,0,0,0,2091,2090,
-        1,0,0,0,2092,335,1,0,0,0,2093,2097,5,100,0,0,2094,2096,3,334,167,
+        2092,3,332,166,0,2090,2092,5,103,0,0,2091,2089,1,0,0,0,2091,2090,
+        1,0,0,0,2092,335,1,0,0,0,2093,2097,5,102,0,0,2094,2096,3,334,167,
         0,2095,2094,1,0,0,0,2096,2099,1,0,0,0,2097,2095,1,0,0,0,2097,2098,
-        1,0,0,0,2098,2100,1,0,0,0,2099,2097,1,0,0,0,2100,2101,5,102,0,0,
+        1,0,0,0,2098,2100,1,0,0,0,2099,2097,1,0,0,0,2100,2101,5,104,0,0,
         2101,337,1,0,0,0,2102,2103,5,88,0,0,2103,339,1,0,0,0,2104,2107,3,
         324,162,0,2105,2107,3,338,169,0,2106,2104,1,0,0,0,2106,2105,1,0,
         0,0,2107,2108,1,0,0,0,2108,2106,1,0,0,0,2108,2109,1,0,0,0,2109,2116,
@@ -1033,7 +1033,7 @@ def serializedATN():
         5,79,0,0,2526,2525,1,0,0,0,2526,2527,1,0,0,0,2527,2529,1,0,0,0,2528,
         2468,1,0,0,0,2528,2483,1,0,0,0,2528,2495,1,0,0,0,2528,2507,1,0,0,
         0,2528,2513,1,0,0,0,2528,2515,1,0,0,0,2528,2517,1,0,0,0,2529,407,
-        1,0,0,0,2530,2531,5,91,0,0,2531,2534,5,96,0,0,2532,2534,5,96,0,0,
+        1,0,0,0,2530,2531,5,91,0,0,2531,2534,5,98,0,0,2532,2534,5,98,0,0,
         2533,2530,1,0,0,0,2533,2532,1,0,0,0,2534,409,1,0,0,0,326,420,427,
         435,443,447,457,464,468,486,496,503,510,516,523,531,535,541,547,
         550,564,573,585,589,598,609,613,618,624,631,635,640,647,651,656,
@@ -1086,10 +1086,10 @@ class ExprParser ( Parser ):
                      "'|'", "'^'", "'~'", "'<'", "'>'", "'='", "':'", "';'", 
                      "','", "'.'", "'...'", "'('", "')'", "'['", "']'", 
                      "'{'", "'}'", "<INVALID>", "<INVALID>", "<INVALID>", 
-                     "<INVALID>", "<INVALID>", "<INVALID>", "'<INDENT>'", 
-                     "'<DEDENT>'", "<INVALID>", "'<FSTRING_START>'", "'<FSTRING_MIDDLE>'", 
-                     "'<FSTRING_END>'", "'<TSTRING_START>'", "'<TSTRING_MIDDLE>'", 
-                     "'<TSTRING_END>'" ]
+                     "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
+                     "<INVALID>", "'<INDENT>'", "'<DEDENT>'", "<INVALID>", 
+                     "'<FSTRING_START>'", "'<FSTRING_MIDDLE>'", "'<FSTRING_END>'", 
+                     "'<TSTRING_START>'", "'<TSTRING_MIDDLE>'", "'<TSTRING_END>'" ]
 
     symbolicNames = [ "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
                       "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
@@ -1108,10 +1108,10 @@ class ExprParser ( Parser ):
                       "LESS", "GREATER", "ASSIGN", "COLON", "SEMI", "COMMA", 
                       "DOT", "ELLIPSIS", "OPEN_PAREN", "CLOSE_PAREN", "OPEN_BRACK", 
                       "CLOSE_BRACK", "OPEN_BRACE", "CLOSE_BRACE", "STRING", 
-                      "NUMBER", "NAME", "NEWLINE", "WS", "COMMENT", "INDENT", 
-                      "DEDENT", "TYPE_COMMENT", "FSTRING_START", "FSTRING_MIDDLE", 
-                      "FSTRING_END", "TSTRING_START", "TSTRING_MIDDLE", 
-                      "TSTRING_END" ]
+                      "NUMBER", "NAME", "NEWLINE", "WS", "BLOCK_COMMENT", 
+                      "BLOCK_COMMENTS", "COMMENT", "INDENT", "DEDENT", "TYPE_COMMENT", 
+                      "FSTRING_START", "FSTRING_MIDDLE", "FSTRING_END", 
+                      "TSTRING_START", "TSTRING_MIDDLE", "TSTRING_END" ]
 
     RULE_file_ = 0
     RULE_interactive = 1
@@ -1469,16 +1469,18 @@ class ExprParser ( Parser ):
     NAME=90
     NEWLINE=91
     WS=92
-    COMMENT=93
-    INDENT=94
-    DEDENT=95
-    TYPE_COMMENT=96
-    FSTRING_START=97
-    FSTRING_MIDDLE=98
-    FSTRING_END=99
-    TSTRING_START=100
-    TSTRING_MIDDLE=101
-    TSTRING_END=102
+    BLOCK_COMMENT=93
+    BLOCK_COMMENTS=94
+    COMMENT=95
+    INDENT=96
+    DEDENT=97
+    TYPE_COMMENT=98
+    FSTRING_START=99
+    FSTRING_MIDDLE=100
+    FSTRING_END=101
+    TSTRING_START=102
+    TSTRING_MIDDLE=103
+    TSTRING_END=104
 
     def __init__(self, input:TokenStream, output:TextIO = sys.stdout):
         super().__init__(input, output)
@@ -1671,7 +1673,7 @@ class ExprParser ( Parser ):
             self.state = 427
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if (((_la) & ~0x3f) == 0 and ((1 << _la) & 105553131078656) != 0) or ((((_la - 64)) & ~0x3f) == 0 and ((1 << (_la - 64)) & 77432488455) != 0):
+            if (((_la) & ~0x3f) == 0 and ((1 << _la) & 105553131078656) != 0) or ((((_la - 64)) & ~0x3f) == 0 and ((1 << (_la - 64)) & 309360722439) != 0):
                 self.state = 426
                 self.type_expressions()
 
@@ -1786,7 +1788,7 @@ class ExprParser ( Parser ):
                 self.state = 445
                 self.compound_stmt()
                 pass
-            elif token in [10, 17, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 40, 41, 42, 44, 45, 64, 65, 66, 73, 81, 82, 84, 86, 88, 89, 90, 97, 100]:
+            elif token in [10, 17, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 40, 41, 42, 44, 45, 64, 65, 66, 73, 81, 82, 84, 86, 88, 89, 90, 99, 102]:
                 self.enterOuterAlt(localctx, 2)
                 self.state = 446
                 self.simple_stmts()
@@ -1879,7 +1881,7 @@ class ExprParser ( Parser ):
                 self.state = 452
                 self.match(ExprParser.NEWLINE)
                 pass
-            elif token in [10, 17, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 40, 41, 42, 44, 45, 64, 65, 66, 73, 81, 82, 84, 86, 88, 89, 90, 97, 100]:
+            elif token in [10, 17, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 40, 41, 42, 44, 45, 64, 65, 66, 73, 81, 82, 84, 86, 88, 89, 90, 99, 102]:
                 self.enterOuterAlt(localctx, 2)
                 self.state = 454
                 self.simple_stmts()
@@ -2457,7 +2459,7 @@ class ExprParser ( Parser ):
                 self.state = 533
                 self.yield_expr()
                 pass
-            elif token in [10, 17, 21, 22, 23, 45, 64, 65, 66, 73, 81, 82, 84, 86, 88, 89, 90, 97, 100]:
+            elif token in [10, 17, 21, 22, 23, 45, 64, 65, 66, 73, 81, 82, 84, 86, 88, 89, 90, 99, 102]:
                 self.enterOuterAlt(localctx, 2)
                 self.state = 534
                 self.star_expressions()
@@ -2575,7 +2577,7 @@ class ExprParser ( Parser ):
             self.state = 541
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if (((_la) & ~0x3f) == 0 and ((1 << _la) & 35184386900992) != 0) or ((((_la - 64)) & ~0x3f) == 0 and ((1 << (_la - 64)) & 77432488455) != 0):
+            if (((_la) & ~0x3f) == 0 and ((1 << _la) & 35184386900992) != 0) or ((((_la - 64)) & ~0x3f) == 0 and ((1 << (_la - 64)) & 309360722439) != 0):
                 self.state = 540
                 self.star_expressions()
 
@@ -3609,7 +3611,7 @@ class ExprParser ( Parser ):
                 self.state = 667
                 self.statements()
                 pass
-            elif token in [10, 17, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 40, 41, 42, 44, 45, 64, 65, 66, 73, 81, 82, 84, 86, 88, 89, 90, 97, 100]:
+            elif token in [10, 17, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 40, 41, 42, 44, 45, 64, 65, 66, 73, 81, 82, 84, 86, 88, 89, 90, 99, 102]:
                 self.enterOuterAlt(localctx, 2)
                 self.state = 668
                 self.simple_stmts()
@@ -3805,7 +3807,7 @@ class ExprParser ( Parser ):
                 self.state = 691
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if (((_la) & ~0x3f) == 0 and ((1 << _la) & 105553131078656) != 0) or ((((_la - 64)) & ~0x3f) == 0 and ((1 << (_la - 64)) & 77432488455) != 0):
+                if (((_la) & ~0x3f) == 0 and ((1 << _la) & 105553131078656) != 0) or ((((_la - 64)) & ~0x3f) == 0 and ((1 << (_la - 64)) & 309360722439) != 0):
                     self.state = 690
                     self.arguments()
 
@@ -3973,7 +3975,7 @@ class ExprParser ( Parser ):
                 self.state = 719
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if _la==91 or _la==96:
+                if _la==91 or _la==98:
                     self.state = 718
                     self.func_type_comment()
 
@@ -4024,7 +4026,7 @@ class ExprParser ( Parser ):
                 self.state = 739
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if _la==91 or _la==96:
+                if _la==91 or _la==98:
                     self.state = 738
                     self.func_type_comment()
 
@@ -4694,7 +4696,7 @@ class ExprParser ( Parser ):
                 self.state = 887
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if _la==96:
+                if _la==98:
                     self.state = 886
                     self.match(ExprParser.TYPE_COMMENT)
 
@@ -4708,7 +4710,7 @@ class ExprParser ( Parser ):
                 self.state = 891
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if _la==96:
+                if _la==98:
                     self.state = 890
                     self.match(ExprParser.TYPE_COMMENT)
 
@@ -4771,7 +4773,7 @@ class ExprParser ( Parser ):
                 self.state = 900
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if _la==96:
+                if _la==98:
                     self.state = 899
                     self.match(ExprParser.TYPE_COMMENT)
 
@@ -4785,7 +4787,7 @@ class ExprParser ( Parser ):
                 self.state = 904
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if _la==96:
+                if _la==98:
                     self.state = 903
                     self.match(ExprParser.TYPE_COMMENT)
 
@@ -4854,7 +4856,7 @@ class ExprParser ( Parser ):
                 self.state = 914
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if _la==96:
+                if _la==98:
                     self.state = 913
                     self.match(ExprParser.TYPE_COMMENT)
 
@@ -4870,7 +4872,7 @@ class ExprParser ( Parser ):
                 self.state = 919
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if _la==96:
+                if _la==98:
                     self.state = 918
                     self.match(ExprParser.TYPE_COMMENT)
 
@@ -4945,7 +4947,7 @@ class ExprParser ( Parser ):
                 self.state = 931
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if _la==96:
+                if _la==98:
                     self.state = 930
                     self.match(ExprParser.TYPE_COMMENT)
 
@@ -4967,7 +4969,7 @@ class ExprParser ( Parser ):
                 self.state = 938
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if _la==96:
+                if _la==98:
                     self.state = 937
                     self.match(ExprParser.TYPE_COMMENT)
 
@@ -5536,7 +5538,7 @@ class ExprParser ( Parser ):
                 self.state = 1007
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if _la==96:
+                if _la==98:
                     self.state = 1006
                     self.match(ExprParser.TYPE_COMMENT)
 
@@ -5569,7 +5571,7 @@ class ExprParser ( Parser ):
                 self.state = 1020
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if _la==96:
+                if _la==98:
                     self.state = 1019
                     self.match(ExprParser.TYPE_COMMENT)
 
@@ -5690,7 +5692,7 @@ class ExprParser ( Parser ):
                 self.state = 1044
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if _la==96:
+                if _la==98:
                     self.state = 1043
                     self.match(ExprParser.TYPE_COMMENT)
 
@@ -5722,7 +5724,7 @@ class ExprParser ( Parser ):
                 self.state = 1059
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if _la==96:
+                if _la==98:
                     self.state = 1058
                     self.match(ExprParser.TYPE_COMMENT)
 
@@ -5795,7 +5797,7 @@ class ExprParser ( Parser ):
                 self.state = 1093
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if _la==96:
+                if _la==98:
                     self.state = 1092
                     self.match(ExprParser.TYPE_COMMENT)
 
@@ -6396,7 +6398,7 @@ class ExprParser ( Parser ):
                 self.state = 1201
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if (((_la) & ~0x3f) == 0 and ((1 << _la) & 35184386900992) != 0) or ((((_la - 64)) & ~0x3f) == 0 and ((1 << (_la - 64)) & 77432488455) != 0):
+                if (((_la) & ~0x3f) == 0 and ((1 << _la) & 35184386900992) != 0) or ((((_la - 64)) & ~0x3f) == 0 and ((1 << (_la - 64)) & 309360722439) != 0):
                     self.state = 1200
                     self.star_named_expressions()
 
@@ -7566,7 +7568,7 @@ class ExprParser ( Parser ):
                 self.state = 1306
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if (((_la) & ~0x3f) == 0 and ((1 << _la) & 14680080) != 0) or ((((_la - 65)) & ~0x3f) == 0 and ((1 << (_la - 65)) & 38716178435) != 0):
+                if (((_la) & ~0x3f) == 0 and ((1 << _la) & 14680080) != 0) or ((((_la - 65)) & ~0x3f) == 0 and ((1 << (_la - 65)) & 154680295427) != 0):
                     self.state = 1305
                     self.maybe_sequence_pattern()
 
@@ -7581,7 +7583,7 @@ class ExprParser ( Parser ):
                 self.state = 1311
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if (((_la) & ~0x3f) == 0 and ((1 << _la) & 14680080) != 0) or ((((_la - 65)) & ~0x3f) == 0 and ((1 << (_la - 65)) & 38716178435) != 0):
+                if (((_la) & ~0x3f) == 0 and ((1 << _la) & 14680080) != 0) or ((((_la - 65)) & ~0x3f) == 0 and ((1 << (_la - 65)) & 154680295427) != 0):
                     self.state = 1310
                     self.open_sequence_pattern()
 
@@ -7639,7 +7641,7 @@ class ExprParser ( Parser ):
             self.state = 1319
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if (((_la) & ~0x3f) == 0 and ((1 << _la) & 14680080) != 0) or ((((_la - 65)) & ~0x3f) == 0 and ((1 << (_la - 65)) & 38716178435) != 0):
+            if (((_la) & ~0x3f) == 0 and ((1 << _la) & 14680080) != 0) or ((((_la - 65)) & ~0x3f) == 0 and ((1 << (_la - 65)) & 154680295427) != 0):
                 self.state = 1318
                 self.maybe_sequence_pattern()
 
@@ -7752,7 +7754,7 @@ class ExprParser ( Parser ):
                 self.state = 1332
                 self.star_pattern()
                 pass
-            elif token in [4, 21, 22, 23, 65, 82, 84, 86, 88, 89, 90, 97, 100]:
+            elif token in [4, 21, 22, 23, 65, 82, 84, 86, 88, 89, 90, 99, 102]:
                 self.enterOuterAlt(localctx, 2)
                 self.state = 1333
                 self.pattern()
@@ -8046,7 +8048,7 @@ class ExprParser ( Parser ):
             self.state = 1382
             self._errHandler.sync(self)
             token = self._input.LA(1)
-            if token in [21, 22, 23, 65, 88, 89, 97, 100]:
+            if token in [21, 22, 23, 65, 88, 89, 99, 102]:
                 self.state = 1380
                 self.literal_expr()
                 pass
@@ -9016,7 +9018,7 @@ class ExprParser ( Parser ):
                 self.state = 1530
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if (((_la) & ~0x3f) == 0 and ((1 << _la) & 35184386900992) != 0) or ((((_la - 64)) & ~0x3f) == 0 and ((1 << (_la - 64)) & 77432488455) != 0):
+                if (((_la) & ~0x3f) == 0 and ((1 << _la) & 35184386900992) != 0) or ((((_la - 64)) & ~0x3f) == 0 and ((1 << (_la - 64)) & 309360722439) != 0):
                     self.state = 1529
                     self.star_expressions()
 
@@ -9152,7 +9154,7 @@ class ExprParser ( Parser ):
                 self.state = 1551
                 self.bitwise_or(0)
                 pass
-            elif token in [10, 17, 21, 22, 23, 45, 64, 65, 73, 81, 82, 84, 86, 88, 89, 90, 97, 100]:
+            elif token in [10, 17, 21, 22, 23, 45, 64, 65, 73, 81, 82, 84, 86, 88, 89, 90, 99, 102]:
                 self.enterOuterAlt(localctx, 2)
                 self.state = 1552
                 self.expression()
@@ -9273,7 +9275,7 @@ class ExprParser ( Parser ):
                 self.state = 1567
                 self.bitwise_or(0)
                 pass
-            elif token in [10, 17, 21, 22, 23, 45, 64, 65, 73, 81, 82, 84, 86, 88, 89, 90, 97, 100]:
+            elif token in [10, 17, 21, 22, 23, 45, 64, 65, 73, 81, 82, 84, 86, 88, 89, 90, 99, 102]:
                 self.enterOuterAlt(localctx, 2)
                 self.state = 1568
                 self.named_expression()
@@ -9536,7 +9538,7 @@ class ExprParser ( Parser ):
                 self.state = 1596
                 self.inversion()
                 pass
-            elif token in [10, 21, 22, 23, 64, 65, 73, 81, 82, 84, 86, 88, 89, 90, 97, 100]:
+            elif token in [10, 21, 22, 23, 64, 65, 73, 81, 82, 84, 86, 88, 89, 90, 99, 102]:
                 self.enterOuterAlt(localctx, 2)
                 self.state = 1597
                 self.comparison()
@@ -10717,7 +10719,7 @@ class ExprParser ( Parser ):
                 self.state = 1742
                 self.factor()
                 pass
-            elif token in [10, 21, 22, 23, 81, 82, 84, 86, 88, 89, 90, 97, 100]:
+            elif token in [10, 21, 22, 23, 81, 82, 84, 86, 88, 89, 90, 99, 102]:
                 self.enterOuterAlt(localctx, 4)
                 self.state = 1743
                 self.power()
@@ -10827,7 +10829,7 @@ class ExprParser ( Parser ):
                 self.state = 1754
                 self.primary(0)
                 pass
-            elif token in [21, 22, 23, 81, 82, 84, 86, 88, 89, 90, 97, 100]:
+            elif token in [21, 22, 23, 81, 82, 84, 86, 88, 89, 90, 99, 102]:
                 self.enterOuterAlt(localctx, 2)
                 self.state = 1755
                 self.primary(0)
@@ -10954,7 +10956,7 @@ class ExprParser ( Parser ):
                         self.state = 1769
                         self._errHandler.sync(self)
                         _la = self._input.LA(1)
-                        if (((_la) & ~0x3f) == 0 and ((1 << _la) & 105553131078656) != 0) or ((((_la - 64)) & ~0x3f) == 0 and ((1 << (_la - 64)) & 77432488455) != 0):
+                        if (((_la) & ~0x3f) == 0 and ((1 << _la) & 105553131078656) != 0) or ((((_la - 64)) & ~0x3f) == 0 and ((1 << (_la - 64)) & 309360722439) != 0):
                             self.state = 1768
                             self.arguments()
 
@@ -11045,7 +11047,7 @@ class ExprParser ( Parser ):
                 self.state = 1785
                 self._errHandler.sync(self)
                 token = self._input.LA(1)
-                if token in [10, 17, 21, 22, 23, 45, 64, 65, 73, 77, 81, 82, 84, 86, 88, 89, 90, 97, 100]:
+                if token in [10, 17, 21, 22, 23, 45, 64, 65, 73, 77, 81, 82, 84, 86, 88, 89, 90, 99, 102]:
                     self.state = 1783
                     self.slice_()
                     pass
@@ -11066,7 +11068,7 @@ class ExprParser ( Parser ):
                         self.state = 1790
                         self._errHandler.sync(self)
                         token = self._input.LA(1)
-                        if token in [10, 17, 21, 22, 23, 45, 64, 65, 73, 77, 81, 82, 84, 86, 88, 89, 90, 97, 100]:
+                        if token in [10, 17, 21, 22, 23, 45, 64, 65, 73, 77, 81, 82, 84, 86, 88, 89, 90, 99, 102]:
                             self.state = 1788
                             self.slice_()
                             pass
@@ -11145,7 +11147,7 @@ class ExprParser ( Parser ):
                 self.state = 1803
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if (((_la) & ~0x3f) == 0 and ((1 << _la) & 35184386900992) != 0) or ((((_la - 64)) & ~0x3f) == 0 and ((1 << (_la - 64)) & 77432488451) != 0):
+                if (((_la) & ~0x3f) == 0 and ((1 << _la) & 35184386900992) != 0) or ((((_la - 64)) & ~0x3f) == 0 and ((1 << (_la - 64)) & 309360722435) != 0):
                     self.state = 1802
                     self.expression()
 
@@ -11155,7 +11157,7 @@ class ExprParser ( Parser ):
                 self.state = 1807
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if (((_la) & ~0x3f) == 0 and ((1 << _la) & 35184386900992) != 0) or ((((_la - 64)) & ~0x3f) == 0 and ((1 << (_la - 64)) & 77432488451) != 0):
+                if (((_la) & ~0x3f) == 0 and ((1 << _la) & 35184386900992) != 0) or ((((_la - 64)) & ~0x3f) == 0 and ((1 << (_la - 64)) & 309360722435) != 0):
                     self.state = 1806
                     self.expression()
 
@@ -11169,7 +11171,7 @@ class ExprParser ( Parser ):
                     self.state = 1811
                     self._errHandler.sync(self)
                     _la = self._input.LA(1)
-                    if (((_la) & ~0x3f) == 0 and ((1 << _la) & 35184386900992) != 0) or ((((_la - 64)) & ~0x3f) == 0 and ((1 << (_la - 64)) & 77432488451) != 0):
+                    if (((_la) & ~0x3f) == 0 and ((1 << _la) & 35184386900992) != 0) or ((((_la - 64)) & ~0x3f) == 0 and ((1 << (_la - 64)) & 309360722435) != 0):
                         self.state = 1810
                         self.expression()
 
@@ -11421,7 +11423,7 @@ class ExprParser ( Parser ):
                 self.state = 1837
                 self.yield_expr()
                 pass
-            elif token in [10, 17, 21, 22, 23, 45, 64, 65, 73, 81, 82, 84, 86, 88, 89, 90, 97, 100]:
+            elif token in [10, 17, 21, 22, 23, 45, 64, 65, 73, 81, 82, 84, 86, 88, 89, 90, 99, 102]:
                 self.state = 1838
                 self.named_expression()
                 pass
@@ -12336,7 +12338,7 @@ class ExprParser ( Parser ):
                 self.state = 2012
                 self.fstring_replacement_field()
                 pass
-            elif token in [98]:
+            elif token in [100]:
                 self.enterOuterAlt(localctx, 2)
                 self.state = 2013
                 self.match(ExprParser.FSTRING_MIDDLE)
@@ -12503,7 +12505,7 @@ class ExprParser ( Parser ):
             self.state = 2036
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while _la==86 or _la==98:
+            while _la==86 or _la==100:
                 self.state = 2033
                 self.fstring_format_spec()
                 self.state = 2038
@@ -12547,7 +12549,7 @@ class ExprParser ( Parser ):
             self.state = 2041
             self._errHandler.sync(self)
             token = self._input.LA(1)
-            if token in [98]:
+            if token in [100]:
                 self.enterOuterAlt(localctx, 1)
                 self.state = 2039
                 self.match(ExprParser.FSTRING_MIDDLE)
@@ -12607,7 +12609,7 @@ class ExprParser ( Parser ):
             self.state = 2047
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while _la==86 or _la==98:
+            while _la==86 or _la==100:
                 self.state = 2044
                 self.fstring_middle()
                 self.state = 2049
@@ -12733,7 +12735,7 @@ class ExprParser ( Parser ):
             self.state = 2067
             self._errHandler.sync(self)
             token = self._input.LA(1)
-            if token in [101]:
+            if token in [103]:
                 self.enterOuterAlt(localctx, 1)
                 self.state = 2065
                 self.match(ExprParser.TSTRING_MIDDLE)
@@ -12790,7 +12792,7 @@ class ExprParser ( Parser ):
             self.state = 2073
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while _la==86 or _la==101:
+            while _la==86 or _la==103:
                 self.state = 2070
                 self.tstring_format_spec()
                 self.state = 2075
@@ -12919,7 +12921,7 @@ class ExprParser ( Parser ):
                 self.state = 2089
                 self.tstring_replacement_field()
                 pass
-            elif token in [101]:
+            elif token in [103]:
                 self.enterOuterAlt(localctx, 2)
                 self.state = 2090
                 self.match(ExprParser.TSTRING_MIDDLE)
@@ -12974,7 +12976,7 @@ class ExprParser ( Parser ):
             self.state = 2097
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while _la==86 or _la==101:
+            while _la==86 or _la==103:
                 self.state = 2094
                 self.tstring_middle()
                 self.state = 2099
@@ -13067,7 +13069,7 @@ class ExprParser ( Parser ):
             self.state = 2115
             self._errHandler.sync(self)
             token = self._input.LA(1)
-            if token in [88, 97]:
+            if token in [88, 99]:
                 self.enterOuterAlt(localctx, 1)
                 self.state = 2106 
                 self._errHandler.sync(self)
@@ -13077,7 +13079,7 @@ class ExprParser ( Parser ):
                         self.state = 2106
                         self._errHandler.sync(self)
                         token = self._input.LA(1)
-                        if token in [97]:
+                        if token in [99]:
                             self.state = 2104
                             self.fstring()
                             pass
@@ -13096,7 +13098,7 @@ class ExprParser ( Parser ):
                     _alt = self._interp.adaptivePredict(self._input,262,self._ctx)
 
                 pass
-            elif token in [100]:
+            elif token in [102]:
                 self.enterOuterAlt(localctx, 2)
                 self.state = 2111 
                 self._errHandler.sync(self)
@@ -13160,7 +13162,7 @@ class ExprParser ( Parser ):
             self.state = 2119
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if (((_la) & ~0x3f) == 0 and ((1 << _la) & 35184386900992) != 0) or ((((_la - 64)) & ~0x3f) == 0 and ((1 << (_la - 64)) & 77432488455) != 0):
+            if (((_la) & ~0x3f) == 0 and ((1 << _la) & 35184386900992) != 0) or ((((_la - 64)) & ~0x3f) == 0 and ((1 << (_la - 64)) & 309360722439) != 0):
                 self.state = 2118
                 self.star_named_expressions()
 
@@ -13218,7 +13220,7 @@ class ExprParser ( Parser ):
             self.state = 2129
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if (((_la) & ~0x3f) == 0 and ((1 << _la) & 35184386900992) != 0) or ((((_la - 64)) & ~0x3f) == 0 and ((1 << (_la - 64)) & 77432488455) != 0):
+            if (((_la) & ~0x3f) == 0 and ((1 << _la) & 35184386900992) != 0) or ((((_la - 64)) & ~0x3f) == 0 and ((1 << (_la - 64)) & 309360722439) != 0):
                 self.state = 2124
                 self.star_named_expression()
                 self.state = 2125
@@ -13226,7 +13228,7 @@ class ExprParser ( Parser ):
                 self.state = 2127
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if (((_la) & ~0x3f) == 0 and ((1 << _la) & 35184386900992) != 0) or ((((_la - 64)) & ~0x3f) == 0 and ((1 << (_la - 64)) & 77432488455) != 0):
+                if (((_la) & ~0x3f) == 0 and ((1 << _la) & 35184386900992) != 0) or ((((_la - 64)) & ~0x3f) == 0 and ((1 << (_la - 64)) & 309360722439) != 0):
                     self.state = 2126
                     self.star_named_expressions()
 
@@ -13323,7 +13325,7 @@ class ExprParser ( Parser ):
             self.state = 2139
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if (((_la) & ~0x3f) == 0 and ((1 << _la) & 105553131078656) != 0) or ((((_la - 64)) & ~0x3f) == 0 and ((1 << (_la - 64)) & 77432488451) != 0):
+            if (((_la) & ~0x3f) == 0 and ((1 << _la) & 105553131078656) != 0) or ((((_la - 64)) & ~0x3f) == 0 and ((1 << (_la - 64)) & 309360722435) != 0):
                 self.state = 2138
                 self.double_starred_kvpairs()
 
@@ -13443,7 +13445,7 @@ class ExprParser ( Parser ):
                 self.state = 2155
                 self.bitwise_or(0)
                 pass
-            elif token in [10, 17, 21, 22, 23, 45, 64, 65, 73, 81, 82, 84, 86, 88, 89, 90, 97, 100]:
+            elif token in [10, 17, 21, 22, 23, 45, 64, 65, 73, 81, 82, 84, 86, 88, 89, 90, 99, 102]:
                 self.enterOuterAlt(localctx, 2)
                 self.state = 2156
                 self.kvpair()
@@ -13988,7 +13990,7 @@ class ExprParser ( Parser ):
                     self.state = 2222
                     self.starred_expression()
                     pass
-                elif token in [10, 17, 21, 22, 23, 45, 64, 65, 73, 81, 82, 84, 86, 88, 89, 90, 97, 100]:
+                elif token in [10, 17, 21, 22, 23, 45, 64, 65, 73, 81, 82, 84, 86, 88, 89, 90, 99, 102]:
                     self.state = 2225
                     self._errHandler.sync(self)
                     la_ = self._interp.adaptivePredict(self._input,278,self._ctx)
@@ -14021,7 +14023,7 @@ class ExprParser ( Parser ):
                             self.state = 2230
                             self.starred_expression()
                             pass
-                        elif token in [10, 17, 21, 22, 23, 45, 64, 65, 73, 81, 82, 84, 86, 88, 89, 90, 97, 100]:
+                        elif token in [10, 17, 21, 22, 23, 45, 64, 65, 73, 81, 82, 84, 86, 88, 89, 90, 99, 102]:
                             self.state = 2233
                             self._errHandler.sync(self)
                             la_ = self._interp.adaptivePredict(self._input,280,self._ctx)
@@ -14648,7 +14650,7 @@ class ExprParser ( Parser ):
                 self.state = 2350
                 self.star_target()
                 pass
-            elif token in [21, 22, 23, 81, 82, 84, 86, 88, 89, 90, 97, 100]:
+            elif token in [21, 22, 23, 81, 82, 84, 86, 88, 89, 90, 99, 102]:
                 self.enterOuterAlt(localctx, 2)
                 self.state = 2351
                 self.target_with_star_atom()
@@ -14820,7 +14822,7 @@ class ExprParser ( Parser ):
                 self.state = 2373
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if (((_la) & ~0x3f) == 0 and ((1 << _la) & 14680064) != 0) or ((((_la - 66)) & ~0x3f) == 0 and ((1 << (_la - 66)) & 19358121985) != 0):
+                if (((_la) & ~0x3f) == 0 and ((1 << _la) & 14680064) != 0) or ((((_la - 66)) & ~0x3f) == 0 and ((1 << (_la - 66)) & 77340180481) != 0):
                     self.state = 2372
                     self.star_targets_tuple_seq()
 
@@ -14836,7 +14838,7 @@ class ExprParser ( Parser ):
                 self.state = 2378
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if (((_la) & ~0x3f) == 0 and ((1 << _la) & 14680064) != 0) or ((((_la - 66)) & ~0x3f) == 0 and ((1 << (_la - 66)) & 19358121985) != 0):
+                if (((_la) & ~0x3f) == 0 and ((1 << _la) & 14680064) != 0) or ((((_la - 66)) & ~0x3f) == 0 and ((1 << (_la - 66)) & 77340180481) != 0):
                     self.state = 2377
                     self.star_targets_list_seq()
 
@@ -15123,7 +15125,7 @@ class ExprParser ( Parser ):
                         self.state = 2418
                         self._errHandler.sync(self)
                         _la = self._input.LA(1)
-                        if (((_la) & ~0x3f) == 0 and ((1 << _la) & 105553131078656) != 0) or ((((_la - 64)) & ~0x3f) == 0 and ((1 << (_la - 64)) & 77432488455) != 0):
+                        if (((_la) & ~0x3f) == 0 and ((1 << _la) & 105553131078656) != 0) or ((((_la - 64)) & ~0x3f) == 0 and ((1 << (_la - 64)) & 309360722439) != 0):
                             self.state = 2417
                             self.arguments()
 
@@ -15407,7 +15409,7 @@ class ExprParser ( Parser ):
                 self.state = 2458
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if (((_la) & ~0x3f) == 0 and ((1 << _la) & 14680064) != 0) or ((((_la - 81)) & ~0x3f) == 0 and ((1 << (_la - 81)) & 590763) != 0):
+                if (((_la) & ~0x3f) == 0 and ((1 << _la) & 14680064) != 0) or ((((_la - 81)) & ~0x3f) == 0 and ((1 << (_la - 81)) & 2360235) != 0):
                     self.state = 2457
                     self.del_targets()
 
@@ -15423,7 +15425,7 @@ class ExprParser ( Parser ):
                 self.state = 2463
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if (((_la) & ~0x3f) == 0 and ((1 << _la) & 14680064) != 0) or ((((_la - 81)) & ~0x3f) == 0 and ((1 << (_la - 81)) & 590763) != 0):
+                if (((_la) & ~0x3f) == 0 and ((1 << _la) & 14680064) != 0) or ((((_la - 81)) & ~0x3f) == 0 and ((1 << (_la - 81)) & 2360235) != 0):
                     self.state = 2462
                     self.del_targets()
 
@@ -15665,7 +15667,7 @@ class ExprParser ( Parser ):
                 self.state = 2531
                 self.match(ExprParser.TYPE_COMMENT)
                 pass
-            elif token in [96]:
+            elif token in [98]:
                 self.enterOuterAlt(localctx, 2)
                 self.state = 2532
                 self.match(ExprParser.TYPE_COMMENT)

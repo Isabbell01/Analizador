@@ -1168,6 +1168,16 @@ NEWLINE
 WS
     : [ \t\f]+ -> skip
     ;
+	
+BLOCK_COMMENT
+: '"""' ( . | '\r' | '\n' )*? '"""'
+-> skip
+;
+
+BLOCK_COMMENTS
+: '\'\'\'' ( . | '\r' | '\n' )*? '\'\'\''
+-> skip
+;
 
 COMMENT
     : '#' ~[\r\n]* -> skip
@@ -1206,3 +1216,4 @@ FSTRING_END    : '<FSTRING_END>';
 TSTRING_START  : '<TSTRING_START>';
 TSTRING_MIDDLE : '<TSTRING_MIDDLE>';
 TSTRING_END    : '<TSTRING_END>';
+
