@@ -1,202 +1,1216 @@
+// 
 grammar Expr;
 
+//====
+// Keywords
+DEF       : 'def';
+ASYNC     : 'async';
+AWAIT     : 'await';
+IF        : 'if';
+ELIF      : 'elif';
+ELSE      : 'else';
+WHILE     : 'while';
+FOR       : 'for';
+IN        : 'in';
+NOT       : 'not';
+AND       : 'and';
+OR        : 'or';
+IS        : 'is';
+NONE      : 'None';
+TRUE      : 'True';
+FALSE     : 'False';
+RETURN    : 'return';
+YIELD     : 'yield';
+RAISE     : 'raise';
+PASS      : 'pass';
+BREAK     : 'break';
+CONTINUE  : 'continue';
+GLOBAL    : 'global';
+NONLOCAL  : 'nonlocal';
+ASSERT    : 'assert';
+CLASS     : 'class';
+WITH      : 'with';
+TRY       : 'try';
+EXCEPT    : 'except';
+FINALLY   : 'finally';
+MATCH     : 'match';
+CASE      : 'case';
+TYPE      : 'type';
+FROM      : 'from';
+IMPORT    : 'import';
+AS        : 'as';
+DEL       : 'del';
+LAMBDA    : 'lambda';
 
-// ==================== REGLAS SINTÁCTICAS  ====================
+// Op y Del
+PLUS      : '+';
+MINUS     : '-';
+STAR      : '*';
+DOUBLESTAR: '**';
+SLASH     : '/';
+DOUBLESLASH: '//';
+PERCENT   : '%';
+AT        : '@';
+AMPER     : '&';
+PIPE      : '|';
+CARET     : '^';
+TILDE     : '~';
+LESS      : '<';
+GREATER   : '>';
+LESSEQUAL : '<=';
+GREATEREQUAL: '>=';
+EQUAL     : '==';
+NOTEQUAL  : '!=';
+COLON     : ':';
+SEMI      : ';';
+COMMA     : ',';
+DOT       : '.';
+ELLIPSIS  : '...';
+ASSIGN    : '=';
+PLUSEQUAL : '+=';
+MINEQUAL  : '-=';
+STAREQUAL : '*=';
+SLASHEQUAL: '/=';
+DOUBLESTAREQUAL: '**=';
+DOUBLESLASHEQUAL: '//=';
+PERCENTEQUAL: '%=';
+ATEQUAL   : '@=';
+AMPEREQUAL: '&=';
+PIPEEQUAL : '|=';
+CARETEQUAL: '^=';
+LESSEQUAL2: '<<=';
+GREATEREQUAL2: '>>=';
+WALRUS    : ':=';
 
-program: (instruction | NEWLINE)* EOF;
+// 
+OPEN_PAREN   : '(';
+CLOSE_PAREN  : ')';
+OPEN_BRACE   : '{';
+CLOSE_BRACE  : '}';
+OPEN_BRACK   : '[';
+CLOSE_BRACK  : ']';
 
-instruction: simple_stmt;
+// 
+NEWLINE     : '\r'? '\n' | '\r';
+INDENT      : [ \t]+;           // adsasd
+DEDENT      : ;                 // asdsa
 
+// comment
+TYPE_COMMENT: '#' [ \t]* 'type:' ~[\r\n]*;
 
-simple_stmt: small_stmt (';' small_stmt)* ';'? NEWLINE;
+// F-strings, T-strings
+FSTRING_START : 'f' | 'F' | 'rf' | 'fr' | 'RF' | 'FR' -> pushMode(FSTRING_MODE);
+TSTRING_START : 't' | 'T' -> pushMode(TSTRING_MODE);   // Experimental in 3.13+
 
-small_stmt: expr_stmt| import_stmt| pass_stmt| return_stmt| break_stmt| continue_stmt| global_stmt| nonlocal_stmt| assert_stmt;
+// strings
+STRING
+    : [ruRUfF]? ( SHORT_STRING | LONG_STRING )
+    ;
 
-expr_stmt: list_exp (augassign testlist | OP_ASSIGN testlist)?;
+// numbers
+NUMBER
+    : INTEGER
+    | FLOAT_NUMBER
+    | IMAG_NUMBER
+    ;
 
-augassign: OP_PLUSEQ| OP_MINUSEQ| OP_STAREQ| OP_FLOORDIVEQ| OP_DIVEQ| OP_PERCENTEQ| OP_POWEQ| OP_RSHIFTEQ| OP_LSHIFTEQ| OP_BITANDEQ| OP_BITXOREQ| OP_BITOREQ| OP_WALRUS   ;
+NAME: ID_START ID_CONTINUE*;
 
-list_exp: (test | star_expr) (',' (test | star_expr))* ','?;
+// comments
+WS          : [ \t\f]+ -> channel(HIDDEN);
+COMMENT     : '#' ~[\r\n]* -> channel(HIDDEN);
+LINE_JOINING: '\\' [ \t]* (NEWLINE | EOF) -> channel(HIDDEN);
 
-star_expr: '*' test;
+// fragments
+fragment SHORT_STRING
+    : '\'' (ESC_SEQ | ~['\\\r\n])* '\''
+    | '"' (ESC_SEQ | ~["\\\r\n])* '"'
+    ;
 
-test: or_test ('if' or_test 'else' test)? | lambda_expr;
+fragment LONG_STRING
+    : '\'\'\'' .*? '\'\'\''
+    | '"""' .*? '"""'
+    ;
 
-or_test: and_test ('or' and_test)*;
+fragment ESC_SEQ
+    : '\\' .
+    ;
 
-and_test: not_test ('and' not_test)*;
+fragment INTEGER: '0' [xX] [0-9a-fA-F]+
+                | '0' [oO] [0-7]+
+                | '0' [bB] [01]+
+                | [1-9] [0-9]*
+                | '0'
+                ;
 
-not_test: 'not' not_test| comparison;
+fragment FLOAT_NUMBER: [0-9]+ '.' [0-9]* EXPONENT?
+                     | '.' [0-9]+ EXPONENT?
+                     | [0-9]+ EXPONENT
+                     ;
 
-comparison: expr (operators expr)*;
-operators: '<'| '>'| '=='| '>='| '<='| '!='| '<>'| 'in'| 'not' 'in'| 'is'| 'is' 'not';
+fragment IMAG_NUMBER: (FLOAT_NUMBER | [0-9]+) [jJ];
 
-expr: xor_expr ('|' xor_expr)*;
-
-xor_expr: and_expr ('^' and_expr)*;
-
-and_expr: shift_expr ('&' shift_expr)*;
-
-shift_expr: arith_expr (('<<'|'>>') arith_expr)*;
-
-arith_expr: term (('+'|'-') term)*;
-
-term: factor (('*'|'/'|'%'|'//'|'@') factor)*;
-
-factor: ('+'|'-'|'~') factor;
-
-argument: test (comp_for)?| test '=' test| '**' test| '*' test;
-
-comp_for: 'for' list_exp 'in' or_test (comp_iter)?;
-
-comp_iter: comp_for| comp_if;
-
-comp_if: 'if' or_test (comp_iter)?;
-
-lambda_expr: 'lambda';
-
-vfpdef: IDENTIFIER;
-
-yield_expr: 'yield' (yield_arg)?;
-
-yield_arg: 'from' test| testlist;
-
-testlist: test (',' test)* ','?;
-
-with_item: test ('as' expr)?;
-
-
-// -------------------- Importaciones --------------------
-import_stmt: 'import' dotted_as_names| 'from' dotted_name 'import' ('*' | import_as_names);
-
-dotted_name: IDENTIFIER ('.' IDENTIFIER)*;
-
-dotted_as_names: dotted_as_name (',' dotted_as_name)*;
-
-dotted_as_name: dotted_name ('as' IDENTIFIER)?;
-
-import_as_names: import_as_name (',' import_as_name)*;
-
-import_as_name: IDENTIFIER ('as' IDENTIFIER)?;
-
-pass_stmt: 'pass';
-
-return_stmt: 'return' (testlist)?;
-
-break_stmt: 'break';
-
-global_stmt: 'global' IDENTIFIER (',' IDENTIFIER)*;
-
-continue_stmt: 'continue';
-
-nonlocal_stmt: 'nonlocal' IDENTIFIER (',' IDENTIFIER)*;
-
-assert_stmt: 'assert' test (',' test)?;
-
-
-// ==================== REGLAS LÉXICAS  ====================
-
-// ---------- Palabras reservadas ----------
-IF      : 'if';
-ELIF    : 'elif';
-ELSE    : 'else';
-WHILE   : 'while';
-FOR     : 'for';
-IN      : 'in';
-DEF     : 'def';
-CLASS   : 'class';
-RETURN  : 'return';
-BREAK   : 'break';
-CONTINUE: 'continue';
-IMPORT  : 'import';
-FROM    : 'from';
-AS      : 'as';
-PASS    : 'pass';
-TRY     : 'try';
-EXCEPT  : 'except';
-FINALLY : 'finally';
-WITH    : 'with';
-GLOBAL  : 'global';
-NONLOCAL: 'nonlocal';
-ASSERT  : 'assert';
-DEL     : 'del';
-RAISE   : 'raise';
-YIELD   : 'yield';
-LAMBDA  : 'lambda';
-NONE    : 'None';
-TRUE    : 'True';
-FALSE   : 'False';
-AND     : 'and';
-OR      : 'or';
-NOT     : 'not';
-IS      : 'is';
-ELIPSIS : '...';
-ASYNC   : 'async';
-AWAIT   : 'await';
-
-// ---------- Operadores y delimitadores ----------
-OP_MAS        : '+';
-OP_MINUS       : '-';
-OP_STAR        : '*';
-OP_DIV         : '/';
-OP_PERCENT     : '%';
-OP_FLOORDIV    : '//';
-OP_POW         : '**';
-OP_LSHIFT      : '<<';
-OP_RSHIFT      : '>>';
-OP_BITAND      : '&';
-OP_BITOR       : '|';
-OP_BITXOR      : '^';
-OP_TILDE       : '~';
-OP_LT          : '<';
-OP_GT          : '>';
-OP_LE          : '<=';
-OP_GE          : '>=';
-OP_EQ          : '==';
-OP_NE          : '!=';
-OP_NE2         : '<>';
-OP_ASSIGN      : '=';
-OP_PLUSEQ      : '+=';
-OP_MINUSEQ     : '-=';
-OP_STAREQ      : '*=';
-OP_DIVEQ       : '/=';
-OP_PERCENTEQ   : '%=';
-OP_FLOORDIVEQ  : '//=';
-OP_POWEQ       : '**=';
-OP_LSHIFTEQ    : '<<=';
-OP_RSHIFTEQ    : '>>=';
-OP_BITANDEQ    : '&=';
-OP_BITOREQ     : '|=';
-OP_BITXOREQ    : '^=';
-OP_WALRUS      : ':=';         
-OP_DOUBLE_DOT  : ':';
-OP_DOT_COMMA   : ';';
-OP_COMMA       : ',';
-OP_DOT         : '.';
-OP_LPAREN      : '(';
-OP_RPAREN      : ')';
-OP_LBRACK      : '[';
-OP_RBRACK      : ']';
-OP_LBRACE      : '{';
-OP_RBRACE      : '}';
-OP_ARROW       : '->';
-OP_DECORATOR   : '@';         
-IDENTIFIER: ([a-zA-Z] | '_') ([a-zA-Z] | [0-9] | '_')*;
-NUMBER: INTEGER| FLOAT;
-fragment INTEGER: DECIMAL_INTEGER| OCT_INTEGER| HEX_INTEGER| BIN_INTEGER;
-fragment DECIMAL_INTEGER: [1-9] [0-9]* | '0'+;
-fragment OCT_INTEGER: '0' [oO] OCT_DIGIT+;
-fragment OCT_DIGIT: [0-7];
-fragment HEX_INTEGER: '0' [xX] HEX_DIGIT+;
-fragment HEX_DIGIT: [0-9a-fA-F];
-fragment BIN_INTEGER: '0' [bB] BIN_DIGIT+;
-fragment BIN_DIGIT: [01];
-fragment FLOAT: POINT_FLOAT| EXPONENT_FLOAT;
-fragment POINT_FLOAT: INT_PART? FRACTION| INT_PART '.' FRACTION;
-fragment EXPONENT_FLOAT: (INT_PART | POINT_FLOAT) EXPONENT;
-fragment INT_PART: [0-9]+;
-fragment FRACTION: '.' [0-9]+;
 fragment EXPONENT: [eE] [+-]? [0-9]+;
-WS: [ \t\n\r]+ -> skip;
-NEWLINE: ('\r'? '\n' | '\r') [ \t]*;
+
+fragment ID_START
+    : [a-zA-Z_]
+    | '\u0080'..'\uFFFF'    // simplified unicode
+    ;
+
+fragment ID_CONTINUE
+    : ID_START
+    | [0-9]
+    ;
+
+// modos f-strings / t-strings
+mode FSTRING_MODE;
+FSTRING_MIDDLE : ~[{}]+;
+FSTRING_END    : '}' -> popMode;
+FBRACE_OPEN    : '{' -> pushMode(DEFAULT_MODE); // allow nested expressions
+
+mode TSTRING_MODE;
+TSTRING_MIDDLE : ~[{}]+;
+TSTRING_END    : '}' -> popMode;
+// =======================
+
+// entrada
+file_ : statements EOF;
+interactive : statement_newline EOF;
+eval_ : expressions NEWLINE* EOF;
+func_type : '(' type_expressions? ')' '->' expression NEWLINE* EOF;
+
+// GENERAL STATEMENTS
+
+statements : statement+ ;
+
+statement
+    : compound_stmt
+    | simple_stmts
+    ;
+
+single_compound_stmt : compound_stmt ;
+
+statement_newline
+    : single_compound_stmt NEWLINE
+    | simple_stmts
+    | NEWLINE
+    | EOF
+    ;
+
+simple_stmts
+    : simple_stmt ( ';' simple_stmt )* ';'? NEWLINE
+    ;
+
+// assignment must come before star_expressions
+simple_stmt
+    : assignment
+    | type_alias
+    | star_expressions
+    | return_stmt
+    | import_stmt
+    | raise_stmt
+    | pass_stmt
+    | del_stmt
+    | yield_stmt
+    | assert_stmt
+    | break_stmt
+    | continue_stmt
+    | global_stmt
+    | nonlocal_stmt
+    ;
+
+compound_stmt
+    : function_def
+    | if_stmt
+    | class_def
+    | with_stmt
+    | for_stmt
+    | try_stmt
+    | while_stmt
+    | match_stmt
+    ;
+	
+// SIMPLE STATEMENTS
+
+assignment
+    : NAME ':' expression ('=' annotated_rhs)?
+    | ('(' single_target ')'
+      | single_subscript_attribute_target) ':' expression ('=' annotated_rhs)?
+    | (star_targets '=' )+ annotated_rhs
+    | single_target augassign annotated_rhs
+    ;
+
+annotated_rhs
+    : yield_expr
+    | star_expressions
+    ;
+
+augassign
+    : '+=' | '-=' | '*=' | '@=' | '/=' | '%='
+    | '&=' | '|=' | '^='
+    | '<<=' | '>>='
+    | '**=' | '//='
+    ;
+
+return_stmt
+    : 'return' star_expressions?
+    ;
+
+raise_stmt
+    : 'raise' expression ('from' expression)?
+    | 'raise'
+    ;
+
+pass_stmt   : 'pass' ;
+break_stmt  : 'break' ;
+continue_stmt : 'continue' ;
+
+global_stmt
+    : 'global' NAME (',' NAME)*
+    ;
+
+nonlocal_stmt
+    : 'nonlocal' NAME (',' NAME)*
+    ;
+
+del_stmt
+    : 'del' del_targets
+    ;
+
+yield_stmt
+    : yield_expr
+    ;
+
+assert_stmt
+    : 'assert' expression (',' expression)?
+    ;
+
+import_stmt
+    : import_name
+    | import_from
+    ;
+	
+// IMPORT STATEMENTS
+
+import_name
+    : 'import' dotted_as_names
+    ;
+
+import_from
+    : 'from' ('.' | '...')* dotted_name 'import' import_from_targets
+    | 'from' ('.' | '...')+ 'import' import_from_targets
+    ;
+
+import_from_targets
+    : '(' import_from_as_names ','? ')'
+    | import_from_as_names
+    | '*'
+    ;
+
+import_from_as_names
+    : import_from_as_name (',' import_from_as_name)* ','?
+    ;
+
+import_from_as_name
+    : NAME ('as' NAME)?
+    ;
+
+dotted_as_names
+    : dotted_as_name (',' dotted_as_name)* ','?
+    ;
+
+dotted_as_name
+    : dotted_name ('as' NAME)?
+    ;
+
+dotted_name
+    : NAME ('.' NAME)*
+    ;
+	
+// COMPOUND STATEMENTS
+
+// Common elements
+block
+    : NEWLINE INDENT statements DEDENT
+    | simple_stmts
+    ;
+
+decorators
+    : ('@' named_expression NEWLINE)+
+    ;
+
+// CLASS DEFINITIONS
+
+class_def
+    : decorators? class_def_raw
+    ;
+
+class_def_raw
+    : 'class' NAME type_params? ('(' arguments? ')')? ':' block
+    ;
+
+// FUNCTION DEFINITIONS
+
+function_def
+    : decorators? function_def_raw
+    ;
+
+function_def_raw
+    : 'def' NAME type_params? '(' params? ')' ('->' expression)? func_type_comment? ':' block
+    | 'async' 'def' NAME type_params? '(' params? ')' ('->' expression)? func_type_comment? ':' block
+    ;
+	
+// FUNCTION PARAMETERS
+
+params
+    : parameters
+    ;
+
+parameters
+    : slash_no_default param_no_default* param_with_default* star_etc?
+    | slash_with_default param_with_default* star_etc?
+    | param_no_default+ param_with_default* star_etc?
+    | param_with_default+ star_etc?
+    | star_etc
+    ;
+
+slash_no_default
+    : param_no_default+ '/' ','
+    | param_no_default+ '/' ')'
+    ;
+
+slash_with_default
+    : param_no_default* param_with_default+ '/' ','
+    | param_no_default* param_with_default+ '/' ')'
+    ;
+
+star_etc
+    : '*' param_no_default param_maybe_default* kwds?
+    | '*' param_no_default_star_annotation param_maybe_default* kwds?
+    | '*' ',' param_maybe_default+ kwds?
+    | kwds
+    ;
+
+kwds
+    : '**' param_no_default
+    ;
+
+// Parameter definitions
+param_no_default
+    : param ',' TYPE_COMMENT?
+    | param TYPE_COMMENT? ')'
+    ;
+
+param_no_default_star_annotation
+    : param_star_annotation ',' TYPE_COMMENT?
+    | param_star_annotation TYPE_COMMENT? ')'
+    ;
+
+param_with_default
+    : param default ',' TYPE_COMMENT?
+    | param default TYPE_COMMENT? ')'
+    ;
+
+param_maybe_default
+    : param default? ',' TYPE_COMMENT?
+    | param default? TYPE_COMMENT? ')'
+    ;
+
+param
+    : NAME annotation?
+    ;
+
+param_star_annotation
+    : NAME star_annotation
+    ;
+
+annotation
+    : ':' expression
+    ;
+
+star_annotation
+    : ':' star_expression
+    ;
+
+default
+    : '=' expression
+    ;
+	
+// COMPOUND STATEMENTS (continued)
+
+// If statement
+if_stmt
+    : 'if' named_expression ':' block elif_stmt
+    | 'if' named_expression ':' block else_block?
+    ;
+
+elif_stmt
+    : 'elif' named_expression ':' block elif_stmt
+    | 'elif' named_expression ':' block else_block?
+    ;
+
+else_block
+    : 'else' ':' block
+    ;
+
+// While statement
+while_stmt
+    : 'while' named_expression ':' block else_block?
+    ;
+
+// For statement
+for_stmt
+    : 'for' star_targets 'in' star_expressions ':' TYPE_COMMENT? block else_block?
+    | 'async' 'for' star_targets 'in' star_expressions ':' TYPE_COMMENT? block else_block?
+    ;
+
+// With statement
+with_stmt
+    : 'with' '(' with_item (',' with_item)* ','? ')' ':' TYPE_COMMENT? block
+    | 'with' with_item (',' with_item)* ':' TYPE_COMMENT? block
+    | 'async' 'with' '(' with_item (',' with_item)* ','? ')' ':' block
+    | 'async' 'with' with_item (',' with_item)* ':' TYPE_COMMENT? block
+    ;
+
+with_item
+    : expression 'as' star_target
+    | expression
+    ;
+
+// Try statement
+try_stmt
+    : 'try' ':' block finally_block
+    | 'try' ':' block except_block+ else_block? finally_block?
+    | 'try' ':' block except_star_block+ else_block? finally_block?
+    ;
+
+except_block
+    : 'except' expression 'as' NAME ':' block
+    | 'except' expression ':' block
+    | 'except' expressions ':' block
+    | 'except' ':' block
+    ;
+
+except_star_block
+    : 'except' '*' expression 'as' NAME ':' block
+    | 'except' '*' expression ':' block
+    | 'except' '*' expressions ':' block
+    ;
+
+finally_block
+    : 'finally' ':' block
+    ;
+
+// Match statement
+match_stmt
+    : 'match' subject_expr ':' NEWLINE INDENT case_block+ DEDENT
+    ;
+
+subject_expr
+    : star_named_expression ',' star_named_expressions?
+    | named_expression
+    ;
+
+case_block
+    : 'case' patterns guard? ':' block
+    ;
+
+guard
+    : 'if' named_expression
+    ;
+
+patterns
+    : open_sequence_pattern
+    | pattern
+    ;
+
+pattern
+    : as_pattern
+    | or_pattern
+    ;
+
+as_pattern
+    : or_pattern 'as' pattern_capture_target
+    ;
+
+or_pattern
+    : closed_pattern ('|' closed_pattern)*
+    ;
+
+closed_pattern
+    : literal_pattern
+    | capture_pattern
+    | wildcard_pattern
+    | value_pattern
+    | group_pattern
+    | sequence_pattern
+    | mapping_pattern
+    | class_pattern
+    ;
+	
+// PATTERNS (for match statement)
+
+literal_pattern
+    : signed_number
+    | complex_number
+    | strings
+    | 'None'
+    | 'True'
+    | 'False'
+    ;
+
+literal_expr
+    : signed_number
+    | complex_number
+    | strings
+    | 'None'
+    | 'True'
+    | 'False'
+    ;
+
+complex_number
+    : signed_real_number ('+' | '-') imaginary_number
+    ;
+
+signed_number
+    : NUMBER
+    | '-' NUMBER
+    ;
+
+signed_real_number
+    : real_number
+    | '-' real_number
+    ;
+
+real_number
+    : NUMBER
+    ;
+
+imaginary_number
+    : NUMBER
+    ;
+
+capture_pattern
+    : pattern_capture_target
+    ;
+
+pattern_capture_target
+    : NAME
+    ;
+
+wildcard_pattern
+    : '_'
+    ;
+
+value_pattern
+    : attr
+    ;
+
+attr
+    : name_or_attr '.' NAME
+    ;
+
+name_or_attr
+    : attr
+    | NAME
+    ;
+
+group_pattern
+    : '(' pattern ')'
+    ;
+
+sequence_pattern
+    : '[' maybe_sequence_pattern? ']'
+    | '(' open_sequence_pattern? ')'
+    ;
+
+open_sequence_pattern
+    : maybe_star_pattern ',' maybe_sequence_pattern?
+    ;
+
+maybe_sequence_pattern
+    : maybe_star_pattern (',' maybe_star_pattern)* ','?
+    ;
+
+maybe_star_pattern
+    : star_pattern
+    | pattern
+    ;
+
+star_pattern
+    : '*' pattern_capture_target
+    | '*' wildcard_pattern
+    ;
+
+mapping_pattern
+    : '{' '}'
+    | '{' double_star_pattern ','? '}'
+    | '{' items_pattern ',' double_star_pattern ','? '}'
+    | '{' items_pattern ','? '}'
+    ;
+
+items_pattern
+    : key_value_pattern (',' key_value_pattern)* ','?
+    ;
+
+key_value_pattern
+    : (literal_expr | attr) ':' pattern
+    ;
+
+double_star_pattern
+    : '**' pattern_capture_target
+    ;
+
+class_pattern
+    : name_or_attr '(' ')'
+    | name_or_attr '(' positional_patterns ','? ')'
+    | name_or_attr '(' keyword_patterns ','? ')'
+    | name_or_attr '(' positional_patterns ',' keyword_patterns ','? ')'
+    ;
+
+positional_patterns
+    : pattern (',' pattern)* ','?
+    ;
+
+keyword_patterns
+    : keyword_pattern (',' keyword_pattern)* ','?
+    ;
+
+keyword_pattern
+    : NAME '=' pattern
+    ;
+	
+// TYPE STATEMENT
+
+type_alias
+    : 'type' NAME type_params? '=' expression
+    ;
+
+// ======================
+// TYPE PARAMETERS
+// ======================
+
+type_params
+    : '[' type_param_seq ']'
+    ;
+
+type_param_seq
+    : type_param (',' type_param)* ','?
+    ;
+
+type_param
+    : NAME type_param_bound? type_param_default?
+    | '*' NAME type_param_starred_default?
+    | '**' NAME type_param_default?
+    ;
+
+type_param_bound
+    : ':' expression
+    ;
+
+type_param_default
+    : '=' expression
+    ;
+
+type_param_starred_default
+    : '=' star_expression
+    ;
+
+// EXPRESSIONS
+
+expressions
+    : expression (',' expression)* ','?
+    | expression ','
+    ;
+
+expression
+    : disjunction 'if' disjunction 'else' expression
+    | disjunction
+    | lambdef
+    ;
+
+yield_expr
+    : 'yield' 'from' expression
+    | 'yield' star_expressions?
+    ;
+
+star_expressions
+    : star_expression (',' star_expression)* ','?
+    | star_expression ','
+    ;
+
+star_expression
+    : '*' bitwise_or
+    | expression
+    ;
+
+star_named_expressions
+    : star_named_expression (',' star_named_expression)* ','?
+    ;
+
+star_named_expression
+    : '*' bitwise_or
+    | named_expression
+    ;
+
+assignment_expression
+    : NAME ':=' expression
+    ;
+
+named_expression
+    : assignment_expression
+    | expression
+    ;
+
+disjunction
+    : conjunction ('or' conjunction)*
+    ;
+
+conjunction
+    : inversion ('and' inversion)*
+    ;
+
+inversion
+    : 'not' inversion
+    | comparison
+    ;
+	
+// COMPARISON OPERATORS
+
+comparison
+    : bitwise_or compare_op_bitwise_or_pair+
+    | bitwise_or
+    ;
+
+compare_op_bitwise_or_pair
+    : eq_bitwise_or
+    | noteq_bitwise_or
+    | lte_bitwise_or
+    | lt_bitwise_or
+    | gte_bitwise_or
+    | gt_bitwise_or
+    | notin_bitwise_or
+    | in_bitwise_or
+    | isnot_bitwise_or
+    | is_bitwise_or
+    ;
+
+eq_bitwise_or    : '==' bitwise_or ;
+noteq_bitwise_or : '!=' bitwise_or ;
+lte_bitwise_or   : '<=' bitwise_or ;
+lt_bitwise_or    : '<'  bitwise_or ;
+gte_bitwise_or   : '>=' bitwise_or ;
+gt_bitwise_or    : '>'  bitwise_or ;
+notin_bitwise_or : 'not' 'in' bitwise_or ;
+in_bitwise_or    : 'in' bitwise_or ;
+isnot_bitwise_or : 'is' 'not' bitwise_or ;
+is_bitwise_or    : 'is' bitwise_or ;
+
+// BITWISE OPERATORS
+
+bitwise_or
+    : bitwise_or '|' bitwise_xor
+    | bitwise_xor
+    ;
+
+bitwise_xor
+    : bitwise_xor '^' bitwise_and
+    | bitwise_and
+    ;
+
+bitwise_and
+    : bitwise_and '&' shift_expr
+    | shift_expr
+    ;
+
+shift_expr
+    : shift_expr '<<' sum
+    | shift_expr '>>' sum
+    | sum
+    ;
+
+// ARITHMETIC OPERATORS
+
+sum
+    : sum '+' term
+    | sum '-' term
+    | term
+    ;
+
+term
+    : term '*' factor
+    | term '/' factor
+    | term '//' factor
+    | term '%' factor
+    | term '@' factor
+    | factor
+    ;
+
+factor
+    : '+' factor
+    | '-' factor
+    | '~' factor
+    | power
+    ;
+
+power
+    : await_primary '**' factor
+    | await_primary
+    ;
+	
+// PRIMARY ELEMENTS
+
+await_primary
+    : 'await' primary
+    | primary
+    ;
+
+primary
+    : primary '.' NAME
+    | primary genexp
+    | primary '(' arguments? ')'
+    | primary '[' slices ']'
+    | atom
+    ;
+
+slices
+    : slice
+    | (slice | starred_expression) (',' (slice | starred_expression))* ','?
+    ;
+
+slice
+    : expression? ':' expression? (':' expression?)?
+    | named_expression
+    ;
+
+atom
+    : NAME
+    | 'True'
+    | 'False'
+    | 'None'
+    | strings
+    | NUMBER
+    | tuple
+    | group
+    | genexp
+    | list
+    | listcomp
+    | dict
+    | set
+    | dictcomp
+    | setcomp
+    | '...'
+    ;
+
+group
+    : '(' (yield_expr | named_expression) ')'
+    ;
+
+// LAMBDA FUNCTIONS
+
+lambdef
+    : 'lambda' lambda_params? ':' expression
+    ;
+
+lambda_params
+    : lambda_parameters
+    ;
+
+lambda_parameters
+    : lambda_slash_no_default lambda_param_no_default* lambda_param_with_default* lambda_star_etc?
+    | lambda_slash_with_default lambda_param_with_default* lambda_star_etc?
+    | lambda_param_no_default+ lambda_param_with_default* lambda_star_etc?
+    | lambda_param_with_default+ lambda_star_etc?
+    | lambda_star_etc
+    ;
+
+lambda_slash_no_default
+    : lambda_param_no_default+ '/' ','
+    | lambda_param_no_default+ '/' ':'
+    ;
+
+lambda_slash_with_default
+    : lambda_param_no_default* lambda_param_with_default+ '/' ','
+    | lambda_param_no_default* lambda_param_with_default+ '/' ':'
+    ;
+
+lambda_star_etc
+    : '*' lambda_param_no_default lambda_param_maybe_default* lambda_kwds?
+    | '*' ',' lambda_param_maybe_default+ lambda_kwds?
+    | lambda_kwds
+    ;
+
+lambda_kwds
+    : '**' lambda_param_no_default
+    ;
+
+lambda_param_no_default
+    : lambda_param ','
+    | lambda_param ':'
+    ;
+
+lambda_param_with_default
+    : lambda_param default ','
+    | lambda_param default ':'
+    ;
+
+lambda_param_maybe_default
+    : lambda_param default? ','
+    | lambda_param default? ':'
+    ;
+
+lambda_param
+    : NAME
+    ;
+	
+// LITERALS
+
+fstring_middle
+    : fstring_replacement_field
+    | FSTRING_MIDDLE
+    ;
+
+fstring_replacement_field
+    : '{' annotated_rhs '='? fstring_conversion? fstring_full_format_spec? '}'
+    ;
+
+fstring_conversion
+    : '!' NAME
+    ;
+
+fstring_full_format_spec
+    : ':' fstring_format_spec*
+    ;
+
+fstring_format_spec
+    : FSTRING_MIDDLE
+    | fstring_replacement_field
+    ;
+
+fstring
+    : FSTRING_START fstring_middle* FSTRING_END
+    ;
+
+// tstring (template string) rules
+tstring_format_spec_replacement_field
+    : '{' annotated_rhs '='? fstring_conversion? tstring_full_format_spec? '}'
+    ;
+
+tstring_format_spec
+    : TSTRING_MIDDLE
+    | tstring_format_spec_replacement_field
+    ;
+
+tstring_full_format_spec
+    : ':' tstring_format_spec*
+    ;
+
+tstring_replacement_field
+    : '{' annotated_rhs '='? fstring_conversion? tstring_full_format_spec? '}'
+    ;
+
+tstring_middle
+    : tstring_replacement_field
+    | TSTRING_MIDDLE
+    ;
+
+tstring
+    : TSTRING_START tstring_middle* TSTRING_END
+    ;
+
+// General strings
+string
+    : STRING
+    ;
+
+strings
+    : (fstring | string)+
+    | tstring+
+    ;
+
+// Container literals
+list
+    : '[' star_named_expressions? ']'
+    ;
+
+tuple
+    : '(' (star_named_expression ',' star_named_expressions?)? ')'
+    ;
+
+set
+    : '{' star_named_expressions '}'
+    ;
+
+// Dicts
+dict
+    : '{' double_starred_kvpairs? '}'
+    ;
+
+double_starred_kvpairs
+    : double_starred_kvpair (',' double_starred_kvpair)* ','?
+    ;
+
+double_starred_kvpair
+    : '**' bitwise_or
+    | kvpair
+    ;
+
+kvpair
+    : expression ':' expression
+    ;
+	
+// COMPREHENSIONS & GENERATORS
+
+for_if_clauses
+    : for_if_clause+
+    ;
+
+for_if_clause
+    : 'async' 'for' star_targets 'in' disjunction ('if' disjunction)*
+    | 'for' star_targets 'in' disjunction ('if' disjunction)*
+    ;
+
+listcomp
+    : '[' named_expression for_if_clauses ']'
+    ;
+
+setcomp
+    : '{' named_expression for_if_clauses '}'
+    ;
+
+genexp
+    : '(' (assignment_expression | expression) for_if_clauses ')'
+    ;
+
+dictcomp
+    : '{' kvpair for_if_clauses '}'
+    ;
+
+// FUNCTION CALL ARGUMENTS
+
+arguments
+    : args ','? ')'
+    ;
+
+args
+    : (starred_expression | (assignment_expression | expression)) 
+        (',' (starred_expression | (assignment_expression | expression)))* 
+        (',' kwargs)?
+    | kwargs
+    ;
+
+kwargs
+    : kwarg_or_starred (',' kwarg_or_starred)* ',' kwarg_or_double_starred (',' kwarg_or_double_starred)* ','?
+    | kwarg_or_starred (',' kwarg_or_starred)* ','?
+    | kwarg_or_double_starred (',' kwarg_or_double_starred)* ','?
+    ;
+
+starred_expression
+    : '*' expression
+    ;
+
+kwarg_or_starred
+    : NAME '=' expression
+    | starred_expression
+    ;
+
+kwarg_or_double_starred
+    : NAME '=' expression
+    | '**' expression
+    ;
+	
+// ASSIGNMENT TARGETS
+
+star_targets
+    : star_target
+    | star_target (',' star_target)* ','?
+    ;
+
+star_targets_list_seq
+    : star_target (',' star_target)* ','?
+    ;
+
+star_targets_tuple_seq
+    : star_target (',' star_target)+ ','?
+    | star_target ','
+    ;
+
+star_target
+    : '*' star_target
+    | target_with_star_atom
+    ;
+
+target_with_star_atom
+    : t_primary '.' NAME
+    | t_primary '[' slices ']'
+    | star_atom
+    ;
+
+star_atom
+    : NAME
+    | '(' target_with_star_atom ')'
+    | '(' star_targets_tuple_seq? ')'
+    | '[' star_targets_list_seq? ']'
+    ;
+
+single_target
+    : single_subscript_attribute_target
+    | NAME
+    | '(' single_target ')'
+    ;
+
+single_subscript_attribute_target
+    : t_primary '.' NAME
+    | t_primary '[' slices ']'
+    ;
+
+t_primary
+    : t_primary '.' NAME
+    | t_primary '[' slices ']'
+    | t_primary genexp
+    | t_primary '(' arguments? ')'
+    | atom
+    ;
+
+t_lookahead
+    : '(' | '[' | '.'
+    ;
+
+// TARGETS FOR DEL STATEMENTS
+
+del_targets
+    : del_target (',' del_target)* ','?
+    ;
+
+del_target
+    : t_primary '.' NAME
+    | t_primary '[' slices ']'
+    | del_t_atom
+    ;
+
+del_t_atom
+    : NAME
+    | '(' del_target ')'
+    | '(' del_targets? ')'
+    | '[' del_targets? ']'
+    ;
+
+// TYPING ELEMENTS
+
+type_expressions
+    : expression (',' expression)* ',' '*' expression ',' '**' expression
+    | expression (',' expression)* ',' '*' expression
+    | expression (',' expression)* ',' '**' expression
+    | '*' expression ',' '**' expression
+    | '*' expression
+    | '**' expression
+    | expression (',' expression)* ','?
+    ;
+
+func_type_comment
+    : NEWLINE TYPE_COMMENT
+    | TYPE_COMMENT
+    ;
+	
+
 
