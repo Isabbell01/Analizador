@@ -1192,3 +1192,17 @@ fragment ID_CONTINUE
     : [a-zA-Z0-9_]
     ;
 	
+INDENT : '<INDENT>';
+DEDENT : '<DEDENT>';
+
+TYPE_COMMENT
+    : '#' [ \t]* 'type:' ~[\r\n]*
+    ;
+	
+FSTRING_START  : '<FSTRING_START>';
+FSTRING_MIDDLE : '<FSTRING_MIDDLE>';
+FSTRING_END    : '<FSTRING_END>';
+
+TSTRING_START  : '<TSTRING_START>';
+TSTRING_MIDDLE : '<TSTRING_MIDDLE>';
+TSTRING_END    : '<TSTRING_END>';
