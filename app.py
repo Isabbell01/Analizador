@@ -55,8 +55,14 @@ class App:
             st.dataframe(errores, use_container_width=True)
         
         # imprimir arbol
-        st.subheader("Arbol sintactico")
-        st.code(self.analizador.obtener_arbol(), language="text")
+        errores_sintacticos = self.analizador.obtener_errores_sintacticos()
+
+        if len(errores_sintacticos) == 0:
+            st.success("El codigo es correcto sintacticamente")
+            st.code(self.analizador.obtener_arbol(), language="text")
+        else:
+            st.error("El codigo tiene errores de sintaxis")
+            st.dataframe(errores_sintacticos, use_container_width=True)
 
 
 if __name__ == "__main__":

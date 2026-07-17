@@ -11,19 +11,13 @@ from ExprLexer import ExprLexer
 from ExprParser import ExprParser
 
 
-# Clase para guardar errores lexicos
+# Clase para guardar errores lexicos y sintacticos
 class ErroresLexicos(ErrorListener):
 
-    # Constructor
     def __init__(self):
-
-        # Lista donde guardaremos los errores
         self.lista = []
 
-    # Metodo que ANTLR ejecuta cuando encuentra error lexico
     def syntaxError(self, recognizer, offendingSymbol, line, column, msg, e):
-
-        # Guardamos el error en la lista
         self.lista.append({
             "linea": line,
             "columna": column,
@@ -31,66 +25,45 @@ class ErroresLexicos(ErrorListener):
         })
 
 
-# Clase para hacer el analisis lexico
 class AnalizadorLexico:
 
-    # Constructor
     def __init__(self):
-
-        # Variable para guardar el lexer
         self.lexer = None
-
-        # Variable para guardar los tokens
         self.tokens = None
-
-        # Objeto para guardar errores lexicos
         self.errores = ErroresLexicos()
+        self.errores_sintacticos = ErroresLexicos()  # nuevo
+        self.parser = None  # nuevo
+        self.tree = None    # nuevo
 
-    # Metodo para analizar codigo
     def analizar(self, codigo):
-
-        # Convertimos el texto en entrada para ANTLR
         entrada = InputStream(codigo)
 
-        # Creamos el lexer
         self.lexer = ExprLexer(entrada)
-
-        # Quitamos los errores normales de ANTLR
         self.lexer.removeErrorListeners()
-
-        # Agregamos nuestro capturador de errores
         self.lexer.addErrorListener(self.errores)
 
-        # Creamos el flujo de tokens
         self.tokens = CommonTokenStream(self.lexer)
-        
-        # Generar arbol
-        parser = ExprParser(self.tokens)
-        tree = parser.file_()
-        self.arbol = tree.toStringTree(recog=parser)
 
-        # Leemos todos los tokens
+        self.parser = ExprParser(self.tokens)
+
+        # nuevo: capturamos errores sintacticos del parser
+        self.parser.removeErrorListeners()
+        self.parser.addErrorListener(self.errores_sintacticos)
+
+        self.tree = self.parser.file_()
+        self.arbol = self.tree.toStringTree(recog=self.parser)
+
         self.tokens.fill()
 
-    # Metodo para obtener tokens como lista
     def obtener_tokens(self):
-
-        # Creamos una lista vacia
         resultado = []
 
-        # Recorremos todos los tokens
         for token in self.tokens.tokens:
-
-            # Saltamos EOF porque es el fin del archivo
             if token.type == Token.EOF:
-
-                # Continuamos con el siguiente token
                 continue
 
-            # Obtenemos el nombre del token
             nombre_token = self.lexer.symbolicNames[token.type]
 
-            # Agregamos el token a la lista
             resultado.append({
                 "lexema": token.text,
                 "token": nombre_token,
@@ -99,14 +72,19 @@ class AnalizadorLexico:
                 "columna": token.column
             })
 
-        # Retornamos la lista de tokens
         return resultado
 
-    # Metodo para obtener errores lexicos
     def obtener_errores(self):
-
-        # Retornamos la lista de errores
         return self.errores.lista
-        
+
+    def obtener_errores_sintacticos(self):  # nuevo
+        return self.errores_sintacticos.lista
+
     def obtener_arbol(self):
         return self.arbol
+
+    def obtener_tree(self):  # nuevo
+        return self.tree
+
+    def obtener_parser(self):  # nuevo
+        return self.parser

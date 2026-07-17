@@ -2,14 +2,14 @@
 grammar Expr;
 
 // entrada
-file_: statements EOF;
+file_: statements NEWLINE* EOF;
 interactive : statement_newline EOF;
 eval_ : expressions NEWLINE* EOF;
 func_type : '(' type_expressions? ')' '->' expression NEWLINE* EOF;
 
 // GENERAL STATEMENTS
 
-statements : statement+ ;
+statements : ( NEWLINE* statement )+ ;
 
 statement
     : compound_stmt
@@ -858,24 +858,24 @@ strings
 
 // Container literals
 list
-    : '[' star_named_expressions? ']'
+    : '[' NEWLINE* star_named_expressions? NEWLINE* ']'
     ;
 
 tuple
-    : '(' (star_named_expression ',' star_named_expressions?)? ')'
+    : '(' NEWLINE* (star_named_expression ',' star_named_expressions?)? NEWLINE* ')'
     ;
 
 set
-    : '{' star_named_expressions '}'
+    : '{' NEWLINE* star_named_expressions NEWLINE* '}'
     ;
 
 // Dicts
 dict
-    : '{' double_starred_kvpairs? '}'
+    : '{' NEWLINE* double_starred_kvpairs? NEWLINE* '}'
     ;
 
 double_starred_kvpairs
-    : double_starred_kvpair (',' double_starred_kvpair)* ','?
+    : double_starred_kvpair (',' NEWLINE* double_starred_kvpair)* NEWLINE* ','?
     ;
 
 double_starred_kvpair
@@ -921,11 +921,11 @@ arguments
     ;
 
 args
-    : (starred_expression | (assignment_expression | expression)) 
-        (',' (starred_expression | (assignment_expression | expression)))* 
-        (',' kwargs)?
-    | kwargs
-    ;
+    : (starred_expression | (assignment_expression | expression))
+       ( ',' NEWLINE* (starred_expression | (assignment_expression | expression)) )*
+       ( ',' NEWLINE* kwargs )?
+     | kwargs
+     ;
 
 kwargs
     : kwarg_or_starred (',' kwarg_or_starred)* ',' kwarg_or_double_starred (',' kwarg_or_double_starred)* ','?
@@ -1216,4 +1216,3 @@ FSTRING_END    : '<FSTRING_END>';
 TSTRING_START  : '<TSTRING_START>';
 TSTRING_MIDDLE : '<TSTRING_MIDDLE>';
 TSTRING_END    : '<TSTRING_END>';
-

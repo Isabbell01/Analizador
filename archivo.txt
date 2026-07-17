@@ -1,0 +1,11 @@
+def calculadora(a, b, operacion):
+    operaciones = {
+        '+': a + b,
+        '-': a - b,
+        '*': a * b,
+        '/': a / b if b != 0 else "Error: división entre cero"
+    }
+    return operaciones.get(operacion, "Operación no válida")
+
+print(calculadora(10, 5, '+'))  # 15
+print(calculadora(10, 5, '/'))  # 2.0
