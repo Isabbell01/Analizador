@@ -204,12 +204,12 @@ parameters
 
 slash_no_default
     : param_no_default+ '/' ','
-    | param_no_default+ '/' ')'
+    | param_no_default+ '/'
     ;
 
 slash_with_default
     : param_no_default* param_with_default+ '/' ','
-    | param_no_default* param_with_default+ '/' ')'
+    | param_no_default* param_with_default+ '/'
     ;
 
 star_etc
@@ -226,22 +226,22 @@ kwds
 // Parameter definitions
 param_no_default
     : param ',' TYPE_COMMENT?
-    | param TYPE_COMMENT? ')'
+    | param TYPE_COMMENT?
     ;
 
 param_no_default_star_annotation
     : param_star_annotation ',' TYPE_COMMENT?
-    | param_star_annotation TYPE_COMMENT? ')'
+    | param_star_annotation TYPE_COMMENT?
     ;
 
 param_with_default
     : param default ',' TYPE_COMMENT?
-    | param default TYPE_COMMENT? ')'
+    | param default TYPE_COMMENT?
     ;
 
 param_maybe_default
     : param default? ',' TYPE_COMMENT?
-    | param default? TYPE_COMMENT? ')'
+    | param default? TYPE_COMMENT?
     ;
 
 param
@@ -917,7 +917,7 @@ dictcomp
 // FUNCTION CALL ARGUMENTS
 
 arguments
-    : args ','? ')'
+    : args ','?
     ;
 
 args
