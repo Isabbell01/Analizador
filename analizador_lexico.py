@@ -7,6 +7,9 @@ from antlr4.error.ErrorListener import ErrorListener
 # Importamos el lexer generado por ANTLR
 from ExprLexer import ExprLexer
 
+# Importando el parser generado por ANTLR
+from ExprParser import ExprParser
+
 
 # Clase para guardar errores lexicos
 class ErroresLexicos(ErrorListener):
@@ -60,6 +63,11 @@ class AnalizadorLexico:
 
         # Creamos el flujo de tokens
         self.tokens = CommonTokenStream(self.lexer)
+        
+        # Generar arbol
+        parser = ExprParser(self.tokens)
+        tree = parser.file_()
+        self.arbol = tree.toStringTree(recog=parser)
 
         # Leemos todos los tokens
         self.tokens.fill()
@@ -99,3 +107,6 @@ class AnalizadorLexico:
 
         # Retornamos la lista de errores
         return self.errores.lista
+        
+    def obtener_arbol(self):
+        return self.arbol

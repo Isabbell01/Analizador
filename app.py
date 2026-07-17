@@ -53,6 +53,10 @@ class App:
             st.success("No hay errores lexicos")
         else:
             st.dataframe(errores, use_container_width=True)
+        
+        # imprimir arbol
+        st.subheader("Arbol sintactico")
+        st.code(self.analizador.obtener_arbol(), language="text")
 
 
 if __name__ == "__main__":
